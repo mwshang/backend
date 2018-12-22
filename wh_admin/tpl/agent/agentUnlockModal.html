@@ -1,0 +1,26 @@
+<div class="modal-body wrapper-lg" >
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 class="m-t-none m-b font-thin">代理解封</h3>
+      <form role="form">
+        <div class="form-group row">
+          <div class="col-sm-12">
+                <span class="">
+                    是否确定为代理&nbsp;&nbsp;&nbsp;<span class="text-info">{{nickName}}</span>&nbsp;&nbsp;&nbsp;解封?
+                </span>
+          </div>
+        </div>
+        <div class="form-group row" ng-show="inited">
+          <div class="col-sm-12">
+            <label>玩家昵称</label>
+            <span class="text-info input-group">{{userName}}</span>
+          </div>
+        </div>
+        <div class="checkbox m-t-lg">
+            <button type="submit" class="btn btn-defult pull-right text-uc" style='margin-left: 1em;' ng-click="cancel()"><strong>取消</strong></button>
+            <button type="submit" class="btn btn-danger pull-right text-uc" style='margin-left: 1em;' ng-click="agentUnlock()"><strong>解封</strong></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

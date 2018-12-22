@@ -1,0 +1,180 @@
+<div ng-controller="operationController">
+  <div class="wrapper-md">
+    <div class="row">
+      <!--一小时统计表-->
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">1小时动态</div>
+          <table class="table table-striped m-b-none">
+            <thead>
+            <tr>
+              <th style="width:100px;">时间</th>
+              <th>在线玩家</th>
+              <th>开局数</th>
+              <th>新增玩家</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in itemsHourData">
+              <td>{{item.createdTime|myTimePipe}}</td>
+              <td>{{item.activeUsers}}</td>
+              <td>{{item.openTables}}</td>
+              <td class="text-success">
+                <i class="fa fa-level-up"></i> {{item.newUsers}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper-md">
+    <div class="row">
+      <!--今日数据-->
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            今日数据
+            <a ng-click="openIndexModal('itemsToday')" class="btn btn-success" style="float:right;height:25px;font-size: 10px;line-height:1;">查看详情</a>
+          </div>
+          <table class="table table-striped m-b-none">
+            <tbody>
+            <!--单条数据 循环到这里开始-->
+            <tr ng-repeat="item in itemsToday">
+              <td ng-class="item.icon" ng-style="{'color':'{{item.color}}'}"></td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.num }}</td>
+            </tr>
+            <!--单条数据 循环到这里结束-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--昨日数据-->
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            昨日数据
+            <a ng-click="openIndexModal('itemsYesterday')" class="btn btn-success" style="float:right;height:25px;font-size: 10px;line-height:1;">查看详情</a>
+          </div>
+          <table class="table table-striped m-b-none">
+            <tbody>
+            <!--单条数据 循环到这里开始-->
+            <tr ng-repeat="item in itemsYesterday">
+              <td ng-class="item.icon" ng-style="{'color':'{{item.color}}'}"></td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.num }}</td>
+            </tr>
+            <!--单条数据 循环到这里结束-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--七日数据-->
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            7日数据
+            <a ng-click="openIndexModal('itemsWeek')" class="btn btn-success" style="float:right;height:25px;font-size: 10px;line-height:1;">查看详情</a>
+          </div>
+          <table class="table table-striped m-b-none">
+            <tbody>
+            <!--单条数据 循环到这里开始-->
+            <tr ng-repeat="item in itemsWeek">
+              <td ng-class="item.icon" ng-style="{'color':'{{item.color}}'}"></td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.num }}</td>
+            </tr>
+            <!--单条数据 循环到这里结束-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--15日数据-->
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            15日数据
+            <a ng-click="openIndexModal('itemsHalfMonth')" class="btn btn-success" style="float:right;height:25px;font-size: 10px;line-height:1;">查看详情</a>
+          </div>
+          <table class="table table-striped m-b-none">
+            <tbody>
+            <!--单条数据 循环到这里开始-->
+            <tr ng-repeat="item in itemsHalfMonth">
+              <td ng-class="item.icon" ng-style="{'color':'{{item.color}}'}"></td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.num }}</td>
+            </tr>
+            <!--单条数据 循环到这里结束-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--本月数据-->
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            本月数据
+            <a ng-click="openIndexModal('itemsCurMonth')" class="btn btn-success" style="float:right;height:25px;font-size: 10px;line-height:1;">查看详情</a>
+          </div>
+          <table class="table table-striped m-b-none">
+            <tbody>
+            <!--单条数据 循环到这里开始-->
+            <tr ng-repeat="item in itemsCurMonth">
+              <td ng-class="item.icon" ng-style="{'color':'{{item.color}}'}"></td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.num }}</td>
+            </tr>
+            <!--单条数据 循环到这里结束-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--上月数据-->
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            上月数据
+            <a ng-click="openIndexModal('itemsLastMonth')" class="btn btn-success" style="float:right;height:25px;font-size: 10px;line-height:1;">查看详情</a>
+          </div>
+          <table class="table table-striped m-b-none">
+            <tbody>
+            <!--单条数据 循环到这里开始-->
+            <tr ng-repeat="item in itemsLastMonth">
+              <td ng-class="item.icon" ng-style="{'color':'{{item.color}}'}"></td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.num }}</td>
+            </tr>
+            <!--单条数据 循环到这里结束-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--本年数据-->
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            本年数据
+            <a  ng-click="openIndexModal('itemsYear')" class="btn btn-success" style="float:right;height:25px;font-size: 10px;line-height:1;">查看详情</a>
+          </div>
+          <table class="table table-striped m-b-none">
+            <tbody>
+            <!--单条数据 循环到这里开始-->
+            <tr ng-repeat="item in itemsYear">
+              <td ng-class="item.icon" ng-style="{'color':'{{item.color}}'}"></td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.num }}</td>
+            </tr>
+            <!--单条数据 循环到这里结束-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/ng-template" id="operationModal.html">
+    <div ng-include="'tpl/operation/operationModal.html'"></div>
+  </script>
+</div>

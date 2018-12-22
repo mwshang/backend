@@ -1,0 +1,1112 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#/main">闲娱棋牌</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right" ng-show="isMobile && isAgent()">
+        <li><a ng-click="showNotice(1)">查看代理通知</a></li>
+        <li><a ng-click="showDonate()">发放钻石</a></li>
+        <li><a ng-click="showDonateList(0)">最近发钻记录</a></li>
+        <li><a ng-click="showDonateList(1)">最近充钻记录</a></li>
+        <!--<li><a ng-click="showAddAgent()">发展下级代理</a></li>-->
+        <li ng-show="user.isAgent == 2"><a ng-click="showAudit()">代理审核</a></li>
+        <li><a ng-click="showSubAgents()">我的下级代理</a></li>
+        <li><a ng-click="showAllMyAgents()">我的代理发展</a></li>
+        <li><a ng-click="showBonus()">我的佣金</a></li>
+        <li><a ng-click="showCloseRoom()">牌局解散</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" ng-show="isMobile && !isAgent()">
+        <li><a ng-click="showData()">数据概览</a></li>
+        <li><a ng-click="showNotice(1)">查看代理通知</a></li>
+        <li><a ng-click="showSendAgent()">发布代理通知</a></li>
+        <li><a ng-click="showNotice(0)">查看游戏通知</a></li>
+        <li><a ng-click="showSendGame()">发布游戏通知</a></li>
+        <li><a ng-click="showCloseRoom()">牌局解散</a></li>
+        <li><a ng-click="showAudit()">代理审核</a></li>
+        <li><a ng-click="showPayBonus()">代理提现</a></li>
+        <li><a ng-click="showDonate()">钻石代充</a></li>
+        <li><a ng-click="showDonateList(0)">最近发卡记录</a></li>
+        <li><a ng-click="showBigSubAgent()">查询高级代理发展</a></li>
+        <li><a ng-click="showSpecSubAgent()">查询代理发展</a></li>
+        <li><a ng-click="showSubAgentDonate()">查询代理消费</a></li>
+        <li><a ng-click="showSubAgentBonus()">查询代理佣金</a></li>
+        <li><a ng-click="showSettings()">运营设置</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#/profile">个人资料</a></li>
+        <!--<li><a href="#/main">设置</a></li>-->
+        <!--<li><a href="#/main">帮助</a></li>-->
+        <li><a ng-click="logout()">退出登录</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar" ng-show="isAgent()">
+        <li><a ng-click="showNotice(1)">查看代理通知</a></li>
+        <li><a ng-click="showDonate()">发放钻石</a></li>
+        <li><a ng-click="showDonateList(0)">最近发钻记录</a></li>
+        <li><a ng-click="showDonateList(1)">最近充钻记录</a></li>
+        <!--<li><a ng-click="showAddAgent()">发展下级代理</a></li>-->
+        <li ng-show="user.isAgent == 2"><a ng-click="showAudit()">代理审核</a></li>
+        <li><a ng-click="showSubAgents()">我的下级代理</a></li>
+        <li><a ng-click="showAllMyAgents()">我的代理发展</a></li>
+        <li><a ng-click="showBonus()">我的佣金</a></li>
+        <li><a ng-click="showCloseRoom()">牌局解散</a></li>
+      </ul>
+      <ul class="nav nav-sidebar" ng-show="!isAgent()">
+        <li><a ng-click="showData()">数据概览</a></li>
+        <li><a ng-click="showNotice(1)">查看代理通知</a></li>
+        <li><a ng-click="showSendAgent()">发布代理通知</a></li>
+        <li><a ng-click="showNotice(0)">查看游戏通知</a></li>
+        <li><a ng-click="showSendGame()">发布游戏通知</a></li>
+        <li><a ng-click="showCloseRoom()">牌局解散</a></li>
+        <li><a ng-click="showAudit()">代理审核</a></li>
+        <li><a ng-click="showPayBonus()">代理提现</a></li>
+        <li><a ng-click="showDonate()">钻石代充</a></li>
+        <li><a ng-click="showDonateList(0)">最近发卡记录</a></li>
+        <li><a ng-click="showBigSubAgent()">查询高级代理发展</a></li>
+        <li><a ng-click="showSpecSubAgent()">查询代理发展</a></li>
+        <li><a ng-click="showSubAgentDonate()">查询代理消费</a></li>
+        <li><a ng-click="showSubAgentBonus()">查询代理佣金</a></li>
+        <li><a ng-click="showSettings()">运营设置</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div class="container">
+        <h2>{{user.name}} 欢迎您!</h2>
+        <p ng-show="user.isAgent < 5">您的游戏ID: {{user.uid}}, 代理等级: {{user._agentLevel}} 剩余钻石: {{user.gemNum}}</p>
+        <p ng-show="user.isAgent == 5">亲爱的小伙伴, 我们一起努力吧</p>
+      </div>
+
+      <h2 class="sub-header col-sm-offset-1">{{title}}</h2>
+
+      <!--代理通知-->
+      <div class="list-group" ng-show="isAgent() && showGetAgentNotice" ng-repeat="item in notices">
+        <a class="list-group-item">
+          <h4 class="list-group-item-heading">{{item.title}}</h4>
+          <p class="list-group-item-text">{{item.content}}</p>
+          <p class="list-group-item-text text-right" ng-bind="formatTime(item.createdtime)"></p>
+        </a>
+      </div>
+
+      <!--代理发放钻石-->
+      <div class="col-md-8 col-md-offset-1 panel panel-default" ng-show="isAgent() && showDonateCards">
+        <div class="container">
+          <h3></h3>
+          <div class="input-group">
+            <label class="control-label" for="uid">玩家游戏ID</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="uid" name="uid" ng-model="player.uid" placeholder="游戏ID" required />
+              <p class="help-block">所发玩家的游戏ID，请一定保证ID正确!</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="cardNum">发钻数量</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="cardNum" name="cardNum" ng-model="donateCardNum" placeholder="钻石数" required min="1" max="10000"/>
+              <p class="help-block">发送的钻石数量，请务必输入正确!</p>
+            </div>
+          </div>
+          <h3></h3>
+          <button class="btn btn-primary" ng-click="getPlayer()">查找玩家</button>
+
+          <div class="control-group" ng-show="player.name.length > 0">
+            <h3></h3>
+            <label class="control-label">玩家昵称: {{player.name}}</label>
+            <div class="input-group">
+              <button class="btn btn-primary" ng-click="donateCards()">发送</button>
+            </div>
+            <h3></h3>
+          </div>
+          <h3></h3>
+          <div class="col-sm-3 alert alert-info" role="alert" ng-show="isDonating">
+            <label>正在发送...</label>
+          </div>
+          <div class="col-sm-3 alert alert-success" role="alert" ng-show="donateResult == 1">
+            <label>发送成功</label>
+          </div>
+          <div class="col-sm-3 alert alert-danger" role="alert" ng-show="donateResult == 0">
+            <label>发送失败</label>
+          </div>
+          <h3></h3>
+        </div>
+      </div>
+
+      <!--代理发展-->
+      <div class="col-md-8 col-md-offset-1 panel panel-default" ng-show="isAgent() && showAddSubAgent">
+        <div class="container">
+          <h3></h3>
+          <div class="input-group">
+            <label class="control-label" for="uid">游戏ID</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="uid" name="uid" ng-model="player.uid" placeholder="游戏ID" required />
+            </div>
+          </div>
+          <h3></h3>
+          <button class="btn btn-primary" ng-click="getPlayer()">查找用户</button>
+
+          <div class="control-group" ng-show="player.name.length > 0">
+            <h3></h3>
+            <label class="control-label">玩家昵称: {{player.name}}  代理权限: {{agentInfo}}</label>
+            <div class="input-group">
+              <button class="btn btn-primary" ng-show="player.vipLevel < 11" ng-click="addSubAgent()">开启代理</button>
+            </div>
+            <h3></h3>
+          </div>
+          <h3></h3>
+          <div class="col-sm-3 alert alert-info" role="alert" ng-show="isSubAgentAdding">
+            <label>正在操作...</label>
+          </div>
+          <div class="col-sm-3 alert alert-success" role="alert" ng-show="subAgentResult == 1">
+            <label>操作成功</label>
+          </div>
+          <div class="col-sm-3 alert alert-danger" role="alert" ng-show="subAgentResult == 0">
+            <label>操作失败</label>
+          </div>
+          <h3></h3>
+        </div>
+      </div>
+
+      <!--下级代理-->
+      <div class="table-responsive" ng-show="isAgent() && showSubAgentList">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>玩家ID</th>
+            <th>玩家昵称</th>
+            <th>代理层级</th>
+            <th>作为上上级的佣金</th>
+            <th>作为上级的佣金</th>
+            <th>绑定用户充值的佣金</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in agents">
+            <td>{{item.uid}}</td>
+            <td>{{item.name}}</td>
+            <td ng-bind="getAgentLevel(item)"></td>
+            <td>{{item.monthL1Bonus}}</td>
+            <td>{{item.monthL2Bonus}}</td>
+            <td>{{item.monthPlayerBonus}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!--我的代理发展-->
+      <div class="table-responsive" ng-show="isAgent() && showAllMyAgentList">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>玩家ID</th>
+            <th>玩家昵称</th>
+            <th>代理层级</th>
+            <th>注册日期</th>
+            <th ng-show="user.agentLevel<3">发展代理数</th>
+            <th>绑定用户数</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in agents">
+            <td>{{item.uid}}</td>
+            <td>{{item.name}}</td>
+            <td ng-bind="getAgentLevel(item)"></td>
+            <td ng-bind="formatTime(item.createdTime)"></td>
+            <td ng-show="user.agentLevel<3">{{item.agentNum}}</td>
+            <td>{{item.playerNum}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!--我的佣金-->
+      <div class="table-responsive" ng-show="isAgent() && showBonusList">
+        <label class="control-label" ng-bind="getBonusTotal(bonus.user)"></label>
+        <label class="control-label" ng-bind="getBonusOut(bonus.user)"></label>
+        <label class="control-label" ng-bind="getBonusAvail(bonus.user)"></label>
+
+        <h3>收入记录</h3>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>玩家ID</th>
+            <th>玩家昵称</th>
+            <th>收入来源</th>
+            <th>充钻数量</th>
+            <th>充钻日期</th>
+            <th>获佣数量</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in bonus.bonusIn">
+            <td>{{item.giveUid}}</td>
+            <td>{{item.giveUserName}}</td>
+            <td ng-bind="_getAgentLevel(item)"></td>
+            <td>{{item.gemNum}}</td>
+            <td ng-bind="formatTime(item.createTime)"></td>
+            <td ng-bind="getBonusNum(bonus.user, item)"></td>
+          </tr>
+          </tbody>
+        </table>
+        <h3></h3>
+        <h3>提取记录</h3>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>提取数量</th>
+            <th>提取日期</th>
+            <th>提取银行</th>
+            <th>银行账户</th>
+            <th>开户姓名</th>
+            <th>提取金额</th>
+            <th>提取状态</th>
+            <th>提取流水号</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in bonus.bonusOut">
+            <td>{{item.outNum}}</td>
+            <td ng-bind="formatTime(item.createTime)"></td>
+            <td>{{item.bankName}}</td>
+            <td>{{item.bankAccount}}</td>
+            <td>{{item.bankUserName}}</td>
+            <td>{{item.cny}}</td>
+            <td ng-bind="bonusOutStatus(item.status)"></td>
+            <td>{{item.serialNo}}</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <h3></h3>
+        <div class="btn-group">
+          <button class="btn btn-primary" ng-show="selectedBank.length == 0">选择提取银行</button>
+          <button class="btn btn-primary" ng-show="selectedBank.length > 0">{{selectedBank}}</button>
+          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <!-- dropdown menu links -->
+            <li ng-class="{active:isSelected($index)==true}" ng-repeat="bank in supportedBanks">
+              <a href="" ng-click="select($index)"> {{  bank}}</a>
+            </li>
+          </ul>
+        </div>
+        <h3></h3>
+        <label class="control-label" for="payAccount">银行账号</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="payAccount" name="payAccount" ng-model="payAccount" />
+          <p class="help-block">注意: 请正确填写银行账号(仅限个人账号,请勿使用公司账号)</p>
+        </div>
+        <label class="control-label" for="payUserName">开户姓名</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="payUserName" name="payUserName" ng-model="payUserName" />
+          <p class="help-block">注意: 请正确填写开户姓名</p>
+        </div>
+        <label class="control-label" for="payBonus">提取数量</label>
+        <div class="input-group">
+          <input type="number" class="form-control" id="payBonus1" name="payBonus" ng-model="payBonus" />
+        </div>
+        <p class="help-block">注意: 请正确填写钻石数量, 1钻石等于{{settings.withdrawPrice}}元人民币</p>
+        <label class="control-label" ng-bind="bonusCNY(payBonus)"></label>
+        <h3></h3>
+        <div class="input-group">
+          <button class="btn btn-primary" ng-click="bonusPay()">申请提取(税费:2元/笔)</button>
+          <h3></h3>
+        </div>
+
+        <h3></h3>
+        <div class="col-sm-3 alert alert-info" role="alert" ng-show="isPayingBonus">
+          <label>正在申请提现...</label>
+        </div>
+        <div class="col-sm-3 alert alert-success" role="alert" ng-show="payBonusResult == 1">
+          <label>提现申请成功,24小时后将自动转入所填银行账户请关注资金变化</label>
+        </div>
+        <div class="col-sm-3 alert alert-danger" role="alert" ng-show="payBonusResult == 0">
+          <label>申请失败,请稍后再试或联系客服</label>
+        </div>
+        <h3></h3>
+      </div>
+
+      <!--运营代理审核-->
+      <div class="col-md-8 col-md-offset-1 panel panel-default" ng-show="user.isAgent > 1 && showAuditAgent">
+        <div class="container">
+          <h3></h3>
+          <div class="input-group">
+            <label class="control-label" for="uid">游戏ID</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="uid" name="uid" ng-model="player.uid" placeholder="游戏ID" required />
+            </div>
+          </div>
+          <h3></h3>
+          <button class="btn btn-primary" ng-click="getPlayer()">查找用户</button>
+
+          <div class="control-group" ng-show="player.name.length > 0">
+            <h3></h3>
+            <label class="control-label">玩家昵称: {{player.name}}</label>
+            <label class="control-label" ng-show="player.agentLevel == '未知'">(该账号还未完成注册,暂不开放对其权限操作!)</label>
+            <br>
+            <label class="control-label">代理开关: {{agentInfo}}   代理等级: {{player.agentLevel}}  上级代理: {{player.upLevelAgent}}</label>
+
+            <h5></h5>
+            <label class="control-label" for="recommender"  ng-show="player.upLevelAgent == '无' && player.agentLevel != '未知'">上级代理游戏ID</label>
+            <div class="input-group" ng-show="player.upLevelAgent == '无' && player.agentLevel != '未知'">
+              <input type="text" class="form-control" id="recommender" name="recommender" ng-model="recommender" />
+              <p class="help-block">上级代理游戏ID，填写后代理才有提成!</p>
+            </div>
+
+            <div class="input-group" ng-show="player.upLevelAgent == '无' && player.agentLevel != '未知'">
+              <button class="btn btn-primary" ng-click="bindAgent()">绑定上级代理</button>
+              <h3></h3>
+            </div>
+
+            <div class="input-group">
+              <button class="btn btn-primary" ng-show="player.vipLevel < 11" ng-click="auditAgent(0, 1)">开启代理权限</button>
+              <button class="btn btn-primary" ng-show="player.vipLevel >= 11" ng-click="auditAgent(0, 0)">关闭代理权限</button>
+            </div>
+            <h3></h3>
+            <div class="input-group">
+              <button class="btn btn-primary" ng-show="player.vipLevel >= 11 && player.vipLevel < 20" ng-click="auditAgent(1, 1)">开启后台访问</button>
+              <button class="btn btn-primary" ng-show="player.vipLevel >= 20" ng-click="auditAgent(1, 0)">禁用后台访问</button>
+            </div>
+            <h3></h3>
+            <div class="input-group" ng-show="user.isAgent > 2 && player.vipLevel >= 20 && player.agentLevel != '未知' && player.agentLevel != '高级'">
+              <button class="btn btn-primary" ng-click="auditAgent(2, 1)">提升代理等级</button>
+            </div>
+            <h3></h3>
+
+          </div>
+          <h3></h3>
+          <div class="col-sm-3 alert alert-info" role="alert" ng-show="isAgentAuditing">
+            <label>正在操作...</label>
+          </div>
+          <div class="col-sm-3 alert alert-success" role="alert" ng-show="agentResult == 1">
+            <label>操作成功</label>
+          </div>
+          <div class="col-sm-3 alert alert-danger" role="alert" ng-show="agentResult == 0">
+            <label>操作失败</label>
+          </div>
+          <h3></h3>
+        </div>
+      </div>
+
+      <!--运营钻石代充-->
+      <div class="col-md-8 col-md-offset-1 panel panel-default" ng-show="!isAgent() && showRewardCards">
+        <div class="container">
+          <h3></h3>
+          <div class="input-group">
+            <label class="control-label" for="uid">玩家游戏ID</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="uid" name="uid" ng-model="player.uid" placeholder="游戏ID" required />
+              <p class="help-block">所奖励玩家的游戏ID，请一定保证ID正确!</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="cardNum">发送钻石数量</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="cardNum" name="cardNum" ng-model="donateCardNum" placeholder="钻石数" required min="1" max="10000"/>
+              <p class="help-block">发送的钻石数量，请务必输入正确!</p>
+            </div>
+          </div>
+          <h3></h3>
+          <button class="btn btn-primary" ng-click="getPlayer()">查找玩家</button>
+
+          <div class="control-group" ng-show="player.name.length > 0">
+            <h3></h3>
+            <label class="control-label">玩家昵称: {{player.name}}</label>
+            <div class="input-group">
+              <button class="btn btn-primary" ng-click="donateCards()">发送钻石</button>
+            </div>
+            <h3></h3>
+          </div>
+          <h3></h3>
+          <div class="col-sm-3 alert alert-info" role="alert" ng-show="isDonating">
+            <label>正在发送...</label>
+          </div>
+          <div class="col-sm-3 alert alert-success" role="alert" ng-show="donateResult == 1">
+            <label>发送成功</label>
+          </div>
+          <div class="col-sm-3 alert alert-danger" role="alert" ng-show="donateResult == 0">
+            <label>发送失败</label>
+          </div>
+          <h3></h3>
+        </div>
+      </div>
+
+      <!--运营查看通知-->
+      <div class="list-group" ng-show="!isAgent() && (showGetGameNotice||showGetAgentNotice)" ng-repeat="item in notices">
+        <a class="list-group-item">
+          <h4 class="list-group-item-heading">{{item.title}}</h4>
+          <p class="list-group-item-text">{{item.content}}</p>
+          <p class="list-group-item-text text-right" ng-bind="formatTime(item.createdtime)"></p>
+        </a>
+        <span class="glyphicon glyphicon-remove pull-right" ng-click="deleteNotice(item.id)"></span>
+      </div>
+
+      <!--运营发布通知-->
+      <div class="col-md-8 col-md-offset-1 panel panel-default" ng-show="!isAgent() && (showSendGameNotice||showSendAgentNotice)">
+        <div class="container">
+          <h3></h3>
+          <label class="control-label" for="title" ng-show="showSendAgentNotice">通知标题:</label>
+          <div class="input-group"  ng-show="showSendAgentNotice">
+          <input type="text" class="form-control" id="title" name="content" ng-model="noticeTitle" placeholder="" />
+          </div>
+          <div class="input-group">
+            <label class="control-label" for="content">通知内容:</label>
+            <!--<div class="input-group">-->
+              <textarea class="form-control" id="content" name="content" rows="5" ng-model="noticeContent" required></textarea>
+              <!--<input type="text" class="form-control" id="content" name="content" ng-model="noticeContent" placeholder="通知内容" required />-->
+            <!--</div>-->
+          </div>
+          <h3></h3>
+          <div class="checkbox"  ng-show="showSendGameNotice">
+              <label>
+                <input type="checkbox" ng-model="noticeContentType" ng-true-value="2" ng-false-value="1"> 游戏紧急通知
+              </label>
+          </div>
+          <h3></h3>
+          <button class="btn btn-primary" ng-click="sendNotice()">发布</button>
+          <h3></h3>
+          <div class="col-sm-3 alert alert-info" role="alert" ng-show="isNoticeSending">
+            <label>正在发布...</label>
+          </div>
+          <div class="col-sm-3 alert alert-success" role="alert" ng-show="noticeResult == 1">
+            <label>发布成功</label>
+          </div>
+          <div class="col-sm-3 alert alert-danger" role="alert" ng-show="noticeResult == 0">
+            <label>发布失败</label>
+          </div>
+          <h3></h3>
+        </div>
+      </div>
+
+      <!--运营发卡记录-->
+      <div class="table-responsive" ng-show="donateResult == 1 || showDonateResult || showRewardResult">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>发钻人ID</th>
+            <th>发钻人昵称</th>
+            <th>玩家ID</th>
+            <th>玩家昵称</th>
+            <th>发钻数量</th>
+            <th>玩家发钻前数量</th>
+            <th>玩家发钻后数量</th>
+            <th>发钻时间</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in donates">
+            <td>{{item.uid}}</td>
+            <td>{{item.userName}}</td>
+            <td>{{item.giveUid}}</td>
+            <td>{{item.giveUserName}}</td>
+            <td>{{item.gemNum}}</td>
+            <td>{{item.userGive_origin}}</td>
+            <td>{{item.userGive_now}}</td>
+            <td ng-bind="formatTime(item.recordTime)"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!--运营查看大代理-->
+      <div class="col-md-8 col-md-offset-1 panel panel-default" ng-show="!isAgent() && showBigAgentList">
+        <!--<div class="container" ng-show="user.isAgent == 5">-->
+          <!--<h3></h3>-->
+          <!--<div class="input-group">-->
+            <!--<label class="control-label" for="uid">游戏ID</label>-->
+            <!--<div class="input-group">-->
+              <!--<input type="text" class="form-control" id="uid" name="uid" ng-model="player.uid" placeholder="游戏ID" required />-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<h3></h3>-->
+          <!--<button class="btn btn-primary" ng-click="getPlayer(callBigAgent)">查询</button>-->
+          <!--<div class="control-group" ng-show="player.name.length > 0">-->
+            <!--<h3></h3>-->
+            <!--<label class="control-label">昵称: {{player.name}}</label>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<h3></h3>-->
+        <div class="table-responsive" ng-show="agents.length > 0">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>玩家ID</th>
+              <th>玩家昵称</th>
+              <th>代理层级</th>
+              <th>注册日期</th>
+              <th>发展代理数</th>
+              <th>绑定用户数</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in agents">
+              <td>{{item.uid}}</td>
+              <td>{{item.name}}</td>
+              <td ng-bind="getAgentLevel(item)"></td>
+              <td ng-bind="formatTime(item.createdTime)"></td>
+              <td>{{item.agentNum}}</td>
+              <td>{{item.playerNum}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!--运营查看下级代理-->
+      <div class="col-md-8 col-md-offset-1 panel panel-default" ng-show="!isAgent() && showSpecSubAgentList">
+        <div class="container">
+          <h3></h3>
+          <div class="input-group">
+            <label class="control-label" for="uid">游戏ID</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="uid" name="uid" ng-model="player.uid" placeholder="游戏ID" required />
+            </div>
+          </div>
+          <h3></h3>
+          <button class="btn btn-primary" ng-click="getPlayer(callAgent)">查询</button>
+          <div class="control-group" ng-show="player.name.length > 0">
+            <h3></h3>
+            <label class="control-label">昵称: {{player.name}}</label>
+          </div>
+        </div>
+        <h3></h3>
+        <div class="table-responsive" ng-show="agents.length > 0">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>玩家ID</th>
+              <th>玩家昵称</th>
+              <th>代理层级</th>
+              <th>作为上上级的佣金</th>
+              <th>作为上级的佣金</th>
+              <th>绑定用户充值的佣金</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in agents">
+              <td>{{item.uid}}</td>
+              <td>{{item.name}}</td>
+              <td ng-bind="getAgentLevel(item)"></td>
+              <td>{{item.monthL1Bonus}}</td>
+              <td>{{item.monthL2Bonus}}</td>
+              <td>{{item.monthPlayerBonus}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!--运营查看代理钻石消费-->
+      <div class="col-md-8 col-md-offset-1 panel panel-default" ng-show="!isAgent() && showSubAgentDonateList">
+        <div class="container">
+          <h3></h3>
+          <div class="input-group">
+            <label class="control-label" for="uid">游戏ID</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="uid" name="uid" ng-model="player.uid" placeholder="游戏ID" required />
+            </div>
+          </div>
+          <h3></h3>
+          <button class="btn btn-primary" ng-click="getPlayer(callDonates)">查询</button>
+          <div class="control-group" ng-show="player.name.length > 0">
+            <h3></h3>
+            <label class="control-label">昵称: {{player.name}}   钻石数: {{player.cardNum}}</label>
+          </div>
+        </div>
+        <h3></h3>
+        <div class="table-responsive" ng-show="donates.length > 0">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>发钻人ID</th>
+              <th>发钻人昵称</th>
+              <th>玩家ID</th>
+              <th>玩家昵称</th>
+              <th>发钻数量</th>
+              <th>发钻时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in donates">
+              <td>{{item.uid}}</td>
+              <td>{{item.userName}}</td>
+              <td>{{item.giveUid}}</td>
+              <td>{{item.giveUserName}}</td>
+              <td>{{item.gemNum}}</td>
+              <td ng-bind="formatTime(item.recordTime)"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!--运营查看代理佣金提成-->
+      <div class="col-md-8 col-md-offset-1 panel panel-default" ng-show="!isAgent() && showSubAgentBonusList">
+        <div class="container">
+          <h3></h3>
+          <div class="input-group">
+            <label class="control-label" for="uid">游戏ID</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="uid" name="uid" ng-model="player.uid" placeholder="游戏ID" required />
+            </div>
+          </div>
+          <h3></h3>
+          <button class="btn btn-primary" ng-click="getPlayer(callBonus)">查询</button>
+          <div class="control-group" ng-show="player.name.length > 0">
+            <h3></h3>
+            <label class="control-label">昵称: {{player.name}}</label>
+            <h3></h3>
+            <label class="control-label" ng-bind="getBonusTotal(bonus.user)"></label>
+            <label class="control-label" ng-bind="getBonusOut(bonus.user)"></label>
+            <label class="control-label" ng-bind="getBonusAvail(bonus.user)"></label>
+
+          </div>
+        </div>
+        <h3></h3>
+        <div class="table-responsive" ng-show="bonus.bonusIn.length > 0">
+          <h3>收入记录</h3>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>玩家ID</th>
+              <th>玩家昵称</th>
+              <th>收入来源</th>
+              <th>充钻数量</th>
+              <th>充钻日期</th>
+              <th>获佣数量</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in bonus.bonusIn">
+              <td>{{item.giveUid}}</td>
+              <td>{{item.giveUserName}}</td>
+              <td ng-bind="_getAgentLevel(item)"></td>
+              <td>{{item.gemNum}}</td>
+              <td ng-bind="formatTime(item.createTime)"></td>
+              <td ng-bind="getBonusNum(bonus.user, item)"></td>
+            </tr>
+            </tbody>
+          </table>
+          <h3></h3>
+          <h3>提取记录</h3>
+          <table class="table table-striped">
+            <thead>
+            <thead>
+            <tr>
+              <th>提取数量</th>
+              <th>提取日期</th>
+              <th>提取银行</th>
+              <th>银行账户</th>
+              <th>开户姓名</th>
+              <th>提取金额</th>
+              <th>提取状态</th>
+              <th>提取流水号</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in bonus.bonusOut">
+              <td>{{item.outNum}}</td>
+              <td ng-bind="formatTime(item.createTime)"></td>
+              <td>{{item.bankName}}</td>
+              <td>{{item.bankAccount}}</td>
+              <td>{{item.bankUserName}}</td>
+              <td>{{item.cny}}</td>
+              <td ng-bind="bonusOutStatus(item.status)"></td>
+              <td>{{item.serialNo}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!--运营代理提现发放-->
+      <div class="table-responsive" ng-show="!isAgent() && showPayBonusList">
+        <div class="container">
+          <h3></h3>
+          <div class="input-group">
+            <label class="control-label" for="uid">游戏ID</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="uid" name="uid" ng-model="player.uid" placeholder="游戏ID" required />
+            </div>
+          </div>
+          <h3></h3>
+          <button class="btn btn-primary" ng-click="getAgentInfo()">查找代理</button>
+
+          <div class="control-group" ng-show="agent.name.length > 0">
+            <h3></h3>
+            <label class="control-label">昵称: {{agent.name}}  上级代理: {{agent.upLevelAgent}}  可提佣金: {{agent.bonusAvail}}</label>
+
+            <h5></h5>
+            <label class="control-label" for="payBonus">提取数量</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="payBonus" name="payBonus" ng-model="payBonus" />
+              <p class="help-block">注意: 请正确填写钻石数量</p>
+            </div>
+
+            <div class="input-group">
+              <button class="btn btn-primary" ng-click="bonusPay()">提交</button>
+              <h3></h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive" ng-show="payBonusList.bonusOut.length > 0">
+          <h3>提取记录</h3>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>提取数量</th>
+              <th>提取日期</th>
+              <th>提取银行</th>
+              <th>银行账户</th>
+              <th>开户姓名</th>
+              <th>提取金额</th>
+              <th>提取状态</th>
+              <th>提取流水号</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in payBonusList.bonusOut">
+              <td>{{item.outNum}}</td>
+              <td ng-bind="formatTime(item.createTime)"></td>
+              <td>{{item.bankName}}</td>
+              <td>{{item.bankAccount}}</td>
+              <td>{{item.bankUserName}}</td>
+              <td>{{item.cny}}</td>
+              <td ng-bind="bonusOutStatus(item.status)"></td>
+              <td>{{item.serialNo}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3></h3>
+        <div class="col-sm-3 alert alert-info" role="alert" ng-show="isPayingBonus">
+          <label>正在操作...</label>
+        </div>
+        <div class="col-sm-3 alert alert-success" role="alert" ng-show="payBonusResult == 1">
+          <label>操作成功</label>
+        </div>
+        <div class="col-sm-3 alert alert-danger" role="alert" ng-show="payBonusResult == 0">
+          <label>操作失败</label>
+        </div>
+        <h3></h3>
+      </div>
+
+      <!--运营设置-->
+      <div class="col-md-8 col-md-offset-1 panel panel-default" ng-show="!isAgent() && showSettingsFlag">
+        <div class="container">
+          <h3>价格设置</h3>
+          <label class="control-label" for="gemPrice">玩家充值钻石价格:</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="gemPrice" name="gemPrice" ng-model="settings.gemPrice" />
+            <p class="help-block">注意: 价格采用批量配置方式, 例如10钻石1元,50钻石4元 格式为: 10:1|50:4 以此扩展价格套餐</p>
+          </div>
+          <label class="control-label" for="withdrawPrice">代理佣金提现价格:</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="withdrawPrice" name="withdrawPrice" ng-model="settings.withdrawPrice" />
+            <p class="help-block">注意: 例如1钻石0.1元, 输入0.1</p>
+          </div>
+
+          <h3>佣金提成设置</h3>
+          <label class="control-label">普通代理直属用户充值:</label>
+          <div class="input-group">
+            <input type="number" class="form-control" id="normalRate1" name="normalRate1" ng-model="settings.normalRate1" />
+            <p class="help-block">直接代理提成: 例如 比例为30%则填30</p>
+          </div>
+          <div class="input-group">
+            <input type="number" class="form-control" id="normalRate2" name="normalRate2" ng-model="settings.normalRate2" />
+            <p class="help-block">上级代理提成: 例如 比例为15%则填15</p>
+          </div>
+          <div class="input-group">
+            <input type="number" class="form-control" id="normalRate3" name="normalRate3" ng-model="settings.normalRate3" />
+            <p class="help-block">上上级代理提成: 例如 比例为5%则填5</p>
+          </div>
+          <h3></h3>
+          <label class="control-label">中级代理直属用户充值:</label>
+          <div class="input-group">
+            <input type="number" class="form-control" id="middleRate1" name="middleRate1" ng-model="settings.middleRate1" />
+            <p class="help-block">直接代理提成: 例如 比例为40%则填40</p>
+          </div>
+          <div class="input-group">
+            <input type="number" class="form-control" id="middleRate2" name="middleRate2" ng-model="settings.middleRate2" />
+            <p class="help-block">上级代理提成: 例如 比例为10%则填10</p>
+          </div>
+          <h3></h3>
+          <label class="control-label">高级代理直属用户充值:</label>
+          <div class="input-group">
+            <input type="number" class="form-control" id="highRate1" name="highRate1" ng-model="settings.highRate1" />
+            <p class="help-block">直接代理提成: 例如 比例为50%则填50</p>
+          </div>
+
+          <h3></h3>
+          <div class="input-group">
+            <button class="btn btn-primary" ng-click="changeSettings()">修改</button>
+            <h3></h3>
+          </div>
+          <h3></h3>
+          <div class="col-sm-3 alert alert-info" role="alert" ng-show="isSettingsChanging">
+            <label>正在操作...</label>
+          </div>
+          <div class="col-sm-3 alert alert-success" role="alert" ng-show="changeSettingsResult == 1">
+            <label>操作成功</label>
+          </div>
+          <div class="col-sm-3 alert alert-danger" role="alert" ng-show="changeSettingsResult == 0">
+            <label>操作失败</label>
+          </div>
+          <h3></h3>
+        </div>
+      </div>
+
+      <!--解散比赛场或私人间-->
+      <div class="col-md-8 col-md-offset-1 panel panel-default" ng-show="showCloseRoomFlag">
+        <div class="container">
+          <h3></h3>
+          <label class="control-label" for="arenaId">比赛场ID:</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="arenaId" name="arenaId" ng-model="arenaId" />
+          </div>
+          <h3></h3>
+          <div class="input-group">
+            <button class="btn btn-primary" ng-click="closeRoom(2)">解散比赛场</button>
+            <h3></h3>
+          </div>
+          <h3></h3>
+          <div class="btn-group">
+            <button class="btn btn-primary" ng-show="selectedSrvType.length == 0">选择房间类型</button>
+            <button class="btn btn-primary" ng-show="selectedSrvType.length > 0">{{selectedSrvTypeName}}</button>
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <!-- dropdown menu links -->
+              <li ng-class="{active:isSelectedSrvType($index)==true}" ng-repeat="serverType in serverTypeNames">
+                <a href="" ng-click="selectSrvType($index)"> {{serverType}}</a>
+              </li>
+            </ul>
+          </div>
+          <h3></h3>
+          <label class="control-label" for="tableId">房间ID:</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="tableId" name="tableId" ng-model="tableId" />
+          </div>
+          <h3></h3>
+          <div class="input-group">
+            <button class="btn btn-primary" ng-click="closeRoom(1)">解散房间</button>
+            <h3></h3>
+          </div>
+          <h3></h3>
+          <div class="col-sm-3 alert alert-info" role="alert" ng-show="isRoomClosing">
+            <label>正在操作...</label>
+          </div>
+          <div class="col-sm-3 alert alert-success" role="alert" ng-show="closeRoomResult == 1">
+            <label>操作成功</label>
+          </div>
+          <div class="col-sm-3 alert alert-danger" role="alert" ng-show="closeRoomResult == 0">
+            <label>操作失败</label>
+          </div>
+          <h3></h3>
+        </div>
+      </div>
+
+      <!--运营数据概览-->
+      <div class="col-md-12" ng-show="!isAgent() && showOpData">
+        <h4>今日数据</h4>
+
+        <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-blue"><i class="ion ion-ios-person"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">在线人数</span>
+                    <span class="info-box-number">{{today.onlineNum}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="ion ion-ios-pricetag"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">今日消耗钻石</span>
+              <span class="info-box-number">{{today.playNum}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- /.col -->
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-personadd"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">今日新增用户</span>
+              <span class="info-box-number">{{today.newUserNum}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- /.col -->
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="ion ion-ios-people"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">今日活跃用户</span>
+              <span class="info-box-number">{{today.activeUserNum}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        </div>
+        <h4>昨日数据</h4>
+        <div class="row">
+            <!-- /.col -->
+            <!--<div class="col-md-4 col-sm-6 col-xs-12">-->
+              <!--<div class="info-box">-->
+                <!--<span class="info-box-icon bg-aqua"><i class="ion ion-egg"></i></span>-->
+
+                <!--<div class="info-box-content">-->
+                  <!--<span class="info-box-text">昨日充钻</span>-->
+                  <!--<span class="info-box-number">{{yesterday.chargeNum}}</span>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /.info-box-content &ndash;&gt;-->
+              <!--</div>-->
+              <!--&lt;!&ndash; /.info-box &ndash;&gt;-->
+            <!--</div>-->
+            <!-- /.col -->
+
+          <!-- /.col -->
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-red"><i class="ion ion-ios-pricetag"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">昨日消耗钻石</span>
+                <span class="info-box-number">{{yesterday.playNum}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <!-- /.col -->
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-yellow"><i class="ion ion-ios-personadd"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">昨日新增用户</span>
+                <span class="info-box-number">{{yesterday.newUserNum}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <!-- /.col -->
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-green"><i class="ion ion-ios-people"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">昨日活跃用户</span>
+                <span class="info-box-number">{{yesterday.activeUserNum}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <h4>最近七日数据</h4>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-red"><i class="ion ion-ios-pricetag"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">最近七日消耗钻石</span>
+                <span class="info-box-number">{{week.playNum}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+        <!-- /.col -->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-personadd"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">最近七日新增用户</span>
+              <span class="info-box-number">{{week.newUserNum}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!--<div class="panel panel-default">-->
+          <!--<div class="table-responsive">-->
+            <!--<table class="table">-->
+              <!--<thead>-->
+              <!--<tr>-->
+                <!--<th>昨日充卡</th>-->
+                <!--<th>昨日消耗钻石</th>-->
+                <!--<th>昨日活跃用户</th>-->
+                <!--<th>昨日新增用户</th>-->
+              <!--</tr>-->
+              <!--</thead>-->
+              <!--<tbody>-->
+              <!--<tr>-->
+                <!--<td><img src="..." alt="{{yesterday.chargeNum}}" class="img-circle"></td>-->
+                <!--<td><img src="..." alt="{{yesterday.playNum}}" class="img-circle"></td>-->
+                <!--<td><img src="..." alt="{{yesterday.activeUserNum}}" class="img-circle"></td>-->
+                <!--<td><img src="..." alt="{{yesterday.newUserNum}}" class="img-circle"></td>-->
+              <!--</tr>-->
+              <!--</tbody>-->
+            <!--</table>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-offset-3 alert alert-warning" role="alert" ng-show="msg.length > 0">
+      <strong>提示：</strong> <label ng-bind="msg"></label>
+    </div>
+  </div>
+</div>

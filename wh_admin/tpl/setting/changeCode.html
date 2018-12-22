@@ -1,0 +1,48 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">修改玩家邀请码
+        <a ui-sref="app.index" class="pull-right text-info">首页</a>
+    </h1>
+</div>
+<div class="wrapper-md" ng-controller="changeCodeController">
+    <!-- toaster directive -->
+    <toaster-container
+            toaster-options="{'position-class': 'toast-bottom-right', 'close-button':false}"></toaster-container>
+    <!-- / toaster directive -->
+    <div class="panel panel-default">
+        <div class="panel-heading font-bold">
+            修改玩家邀请码
+        </div>
+        <div class="panel-body">
+            <form role="form">
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <label>玩家UID</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" ng-model="uid">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="button" ng-click="getUserName(uid)">读取昵称</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" ng-show="userName">
+                        <label>玩家昵称</label>
+                        <div class="input-group">
+                            <span class="text-info text-x">{{userName}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" ng-show="userName">
+                        <div class="form-group">
+                            <label>邀请码</label>
+                            <input type="number" class="form-control" ng-model="code" placeholder="邀请码">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="checkbox m-t-lg" ng-show="userName">
+                    <button type="submit" class="btn btn-sm btn-danger pull-right text-uc m-t-n-xs"
+                            ng-click="changeCode(code)"><strong>修改</strong></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

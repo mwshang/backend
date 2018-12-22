@@ -1,0 +1,37 @@
+{
+  "name": "backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2"
+  },
+  "dependencies": {
+    "angular": "1.4.12",
+    "async": "^2.1.4",
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.14.0",
+    "jade": "~1.11.0",
+    "md5": "^2.0.0",
+    "moment": "^2.10.6",
+    "morgan": "~1.7.0",
+    "mysql": "^2.12.0",
+    "ngstorage": "^0.3.11",
+    "node-schedule": "^1.2.0",
+    "orm": "^3.2.2",
+    "querystring": "^0.2.0",
+    "serve-favicon": "~2.3.0",
+    "uuid": "^3.0.1",
+    "xml2js": "*",
+    "soap": "*",
+    "@alicloud/dybaseapi": "^1.0.0",
+    "@alicloud/dysmsapi": "^1.0.0",
+    "@alicloud/mns": "^1.0.0-beta4",
+    "wechat-oauth": "*",
+    "wx_jsapi_sign": "*"
+  }
+}

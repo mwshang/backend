@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>加载中, 请稍等...</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="wap-font-scale" content="no" />
+	
+	<link rel="stylesheet" href="mobile/sys/css/reset.css?v=20171025" />
+    <link rel="stylesheet" href="mobile/sys/css/common.css?v=20171025" />
+    <link rel="stylesheet" href="mobile/sys/css/gameDetail.css?v=20171025" />
+    <link rel="stylesheet" href="mobile/sys/css/swiper.min.css?v=20171025" />
+    <link rel="stylesheet" href="mobile/sys/font/font_odpwmuepc5qxgvi.css" />
+    
+    <script src="mobile/sys/js/zepto.js?v=20171025"></script>
+    <script src="mobile/sys/js/shade.js?v=20171025"></script>
+    <script src="mobile/sys/js/swiper.min.js?v=20171025"></script>
+    <script src="mobile/sys/js/jquery.js?v=20171025"></script>
+    <script src="mobile/sys/js/shade.js?v=20171025"></script>
+	<script src="js/utils.js"></script>
+	
+    <script>
+	   (function (win) {
+		   var doc = win.document;
+		   var psdWidth = 750;
+		   var tid;
+		   var throttleTime = 300;
+		   var Dpr = 1, uAgent = window.navigator.userAgent;
+		   var isIOS = uAgent.match(/iphone/i);
+		   var isYIXIN = uAgent.match(/yixin/i);
+		   var is2345 = uAgent.match(/Mb2345/i);
+		   var ishaosou = uAgent.match(/mso_app/i);
+		   var isSogou = uAgent.match(/sogoumobilebrowser/ig);
+		   var isLiebao = uAgent.match(/liebaofast/i);
+		   var isGnbr = uAgent.match(/GNBR/i);
+		   var metaEl = doc.querySelector('meta[name="viewport"]');
+		   if (!metaEl) {
+			   metaEl = doc.createElement('meta');
+			   metaEl.setAttribute('name', 'viewport');
+			   doc.head.appendChild(metaEl);
+		   }
+		   metaEl.setAttribute('content', 'width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1');
+
+		   function resizeRem() {
+			   var wWidth = (screen.width > 0) ? (window.innerWidth >= screen.width || window.innerWidth == 0) ? screen.width :
+							   window.innerWidth : window.innerWidth,
+					   wDpr, wFsize;
+			   var wHeight = (screen.height > 0) ? (window.innerHeight >= screen.height || window.innerHeight == 0) ?
+					   screen.height : window.innerHeight : window.innerHeight;
+			   if (window.devicePixelRatio) {
+				   wDpr = window.devicePixelRatio;
+			   } else {
+				   wDpr = isIOS ? wWidth > 818 ? 3 : wWidth > 480 ? 2 : 1 : 1;
+			   }
+			   if (isIOS) {
+				   wWidth = screen.width;
+				   wHeight = screen.height;
+			   }
+			  
+			   wFsize = wWidth > 1080 ? 144 : wWidth / 7.5;
+			   wFsize = wFsize < 60 ? wFsize : 60;
+			 
+			   window.screenWidth_ = wWidth;
+			   document.getElementsByTagName('html')[0].style.fontSize = wFsize + 'px';
+		   }
+		   win.addEventListener('ready', function () {
+			   console.log('ready');
+			   resizeRem();
+		   }, false);
+		   win.addEventListener('onload', function () {
+			   clearTimeout(tid);
+			   tid = setTimeout(resizeRem, throttleTime);
+		   }, false);
+		   win.addEventListener('resize', function () {
+			   clearTimeout(tid);
+			   tid = setTimeout(resizeRem, throttleTime);
+		   }, false);
+		   win.addEventListener('pageshow', function (e) {
+			   if (e.persisted) {
+				   clearTimeout(tid);
+				   tid = setTimeout(resizeRem, throttleTime);
+			   }
+		   }, false);
+		   resizeRem();
+		   if (doc.readyState === 'complete') {
+			   resizeRem();
+		   } else {
+			   doc.addEventListener('DOMContentLoaded', function (e) {
+				   resizeRem();
+			   }, false);
+		   }
+
+	   })(window);
+
+	   // 是否是安卓
+	   function isAndroid() {
+		   var u = window.navigator.userAgent;
+		   if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) { //安卓手机
+			   return true;
+		   }
+		   return false;
+	   }
+	   // 是否为ios
+	   function isIOS(){
+		   var u = window.navigator.userAgent;
+		   var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		   return isiOS;
+	   }
+	   // 是否为微信
+	   function isRunOnWeChat(){
+		   var ua = window.navigator.userAgent.toLowerCase();
+		   if(ua.match(/MicroMessenger/i)=="micromessenger") {
+			   return true;
+		   } else {
+			   return false;
+		   }
+	   }
+
+	   var _app = app(getUrlParam('name'));
+	   if (getUrlParam('name') == 'wh') {
+		   document.title = '武汉麻将';
+	   }
+	</script>
+
+</head>
+<body>
+		
+<section class="gameDetail-banner">
+    <img src="mobile/sys/image/gameDetail-banner.jpg" alt="游戏" class="banner" />
+    <div class="down-item ">
+        <a class="left" href="javascript:void(0);" title="游戏">
+            <img id="icon" src="" alt="icon" />
+        </a>
+        <div class="cont ">
+            <div class="title">
+                <a id="title" href="javascript:void(0);" title="游戏"></a>
+                <em>官</em>
+            </div>
+            <div class="des">
+                <i class="iconfont icon-iconfonticonfontwode1"></i>
+                <span>26342人在玩</span>
+                
+            </div>
+        </div>
+		<a id="download" href=""   class="down-link" title="">官方下载</a>
+		&nbsp;
+		<a id="download2" href=""   class="down-link" title="">商店下载</a>
+    </div>
+</section>
+    <section class="game-image">
+        <div class="hd">游戏图片</div>
+        <div class="swiper-container bd">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img id="preview_img1" src="" alt="游戏">
+                </div>
+                <div class="swiper-slide">
+                    <img id="preview_img2" src="" alt="游戏">
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="game-rule">
+    <div class="hd">游戏介绍</div>
+    <div class="bd">
+        <span class="info">
+			<p id="detail1"></p>
+            <p id="detail2"></p>
+        </span>
+    </div>
+</section>
+<section class="game-info">
+    <div class="hd">信息</div>
+    <ul class="bd">
+        <li>
+            <span>类型：</span><span>棋牌游戏</span>
+        </li>
+        <li>
+            <span>版本：</span><span>v1.0.0</span>
+        </li>
+        <li>
+            <span>大小：</span><span>82.0MB</span>
+        </li>
+        <li>
+            <span>系统要求：</span><span>ios7.0, 安卓2.3及以上</span>
+        </li>
+    </ul>
+</section>
+
+<section class="down-tips" style="display: none">
+	<a id="download1" href=""   class="down-link">官方下载 </a>
+	&nbsp;
+	<a id="download3" href=""   class="down-link"> 商店下载</a>
+</section>
+
+<footer>
+	<p id="footer"></p>
+</footer>
+<section class="shade" style="display: none">
+	<img id="shade" src="mobile/sys/image/android.png" alt="安卓" />
+</section>
+
+ <script>
+	var mySwiper = new Swiper('.swiper-container', {
+		slidesPerView: 1,
+	});
+	$(document).ready(function () {
+		$('.tab .hd div').on('click', function () {
+			var index = $(this).index();
+			$(this).addClass('active').removeClass('nav');
+			$(this).siblings().addClass('nav').removeClass('active');
+			$('.tab .bd div').eq(index).show();
+			$('.tab .bd div').eq(index).siblings().hide();
+	});
+
+		$(window).on('scroll', function () {
+			var offsetTop = document.body.offsetTop || document.documentElement.scrollTop;
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			if (scrollTop > offsetTop) {
+				$('.down-tips').show();
+				$('footer').css({
+					"marginBottom": "1.5rem"
+				})
+			} else {
+				$('.down-tips').hide();
+				$('footer').css({
+					"marginBottom": "0"
+				})
+			}
+		});
+		var scroll = {
+			getScrollTop: function () {
+				var scrollTop = 0;
+				if (document.documentElement && document.documentElement.scrollTop) {
+					scrollTop = document.documentElement.scrollTop;
+				}
+				else if (document.body) {
+					scrollTop = document.body.scrollTop;
+				}
+				return scrollTop;
+			},
+			getClientHeight: function () {
+				var clientHeight = 0;
+				if (document.body.clientHeight && document.documentElement.clientHeight) {
+					clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+				}
+				else {
+					clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+				}
+				return clientHeight;
+			},
+			getScrollHeight: function () {
+				return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+			},
+		};
+
+		if (getUrlParam('name') == 'wh') {
+			$("#footer").text('Copyright©2018   武汉麻将');
+		}
+
+		// 如果在微信中打开，直接弹遮罩
+		if(isRunOnWeChat()){
+			$(".shade").show();
+			if (isIOS()) {
+				$("#shade").attr("src","mobile/sys/image/tipIos.png");
+
+				if (_app.ios.length > 0 && _app.ioscert.length == 0) {
+					window.location = _app.ios;
+				}
+			}
+		}
+
+		if (isIOS()) {
+			if (_app.ios.length > 0 && _app.ioscert.length == 0) {
+				window.location = _app.ios;
+			}
+		}
+
+		{
+			$("#title").text(_app.title);
+			$("#detail1").text(_app.detail1);
+			$("#detail2").text(_app.detail2);
+			$("#icon").attr("src", _app.icon);
+			$("#preview_img1").attr("src", _app.preview);
+			$("#preview_img2").attr("src", _app.preview2);
+
+			if (true == isIOS()) {
+				if (_app.ios.length > 0 && _app.ioscert.length > 0) {
+					$("#download2").attr("href", _app.ios);
+					$("#download3").attr("href", _app.ios);
+					$("#download").attr("href", 'itms-services://?action=download-manifest&url=' + _app.ioscert);
+					$("#download1").attr("href", 'itms-services://?action=download-manifest&url=' + _app.ioscert);
+				} else {
+					$('#download2').hide();
+					$('#download3').hide();
+					if (_app.ios.length > 0) {
+						$("#download").attr("href", _app.ios);
+						$("#download1").attr("href", _app.ios);
+					} else if (_app.ioscert.length > 0) {
+						$("#download").attr("href", 'itms-services://?action=download-manifest&url=' + _app.ioscert);
+						$("#download1").attr("href", 'itms-services://?action=download-manifest&url=' + _app.ioscert);
+					}
+				}
+			} else {
+				$('#download2').hide();
+				$('#download3').hide();
+				if (getUrlParam('c') != undefined && _app.android_channels[getUrlParam('c')] != undefined) {
+					$("#download").attr("href", _app.android_channels[getUrlParam('c')]);
+					$("#download1").attr("href", _app.android_channels[getUrlParam('c')]);
+				} else {
+					$("#download").attr("href", _app.android);
+					$("#download1").attr("href", _app.android);
+				}
+			}
+		}
+	});
+  </script>
+</body>
+</html>

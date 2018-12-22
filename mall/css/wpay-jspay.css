@@ -1,0 +1,51 @@
+#wpay-pay{
+    width:100%;height:100%;background:url(../img/pay-list-bg.png) repeat;position:fixed;left:0;top:0;text-align:center;z-index:999999
+}
+#wpay-pay-list{
+    width:250px;margin:0 auto;padding:40px 0;position:relative;background-color:#fff;text-align:center;border-radius:8px
+}
+.wpay-pay-btn{
+    width:162px;height:49px;background-color:#fff;background-size:158px 45px;border:2px solid #cbcbcb;margin:10px 0;border-radius:5px;cursor:pointer}.wpay-pay-btn:hover{box-shadow:0 0 2px #0CA6FC;border:#0CA6FC 2px solid
+                                                                                                                                                     }
+
+.wpay-pay-close{
+    width:40px;height:40px;background:url(../img/close.png) center no-repeat;position:absolute;right:0;top:0;cursor:pointer
+}
+
+.wpay-pay-btn.channel-sms{
+    background-image:url(../img/sms.png)
+}
+.wpay-pay-btn.channel-prepaid{
+    background-image:url(../img/prepaid.png)
+}
+.wpay-pay-btn.channel-balance{
+    background-image:url(../img/balance.png)
+}
+
+.wpay-pay-btn.channel-un{
+    background-image:url(../img/un.png)
+}
+
+.wpay-pay-btn.channel-ali{
+    background-image:url(../img/ali.png)
+}
+
+.wpay-pay-btn.channel-wxmp{
+    background-image:url(../img/wechat.png)
+}
+.wpay-pay-btn.channel-wx{
+    background-image:url(../img/wx_jsapi.png)
+}
+.wpay-pay-btn.channel-wy{
+    background-image:url(../img/wy_jsapi.png)
+}
+.wpay-pay-btn.channel-qq{
+    background-image:url(../img/qq.png)
+}
+.wpay-pay-btn.channel-jd{
+    background-image:url(../img/jd.png)
+}
+.wpay-pay-btn.channel-bd{
+    background-image:url(../img/bd.png)
+}
+#wpay-pay .wpay-wx{padding:35px;width:250px;height:250px;margin:0 auto;background-color:#fff;position:relative}#wpay-pay-loading{width:100%;margin:38px 0;position:absolute;left:0;top:0;text-align:center;border-radius:8px;background:url(../img/loading.gif) center no-repeat}

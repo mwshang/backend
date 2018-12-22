@@ -1,0 +1,38 @@
+<div style="background-color: white" class="col-sm-12">
+    <div class="wrapper-md" style="height:70px;">
+        <h1 class="m-n font-thin h3">
+            <a ng-click="cancel()" class="btn btn-default" style="float:right;">返回</a>
+            <span class="left-side">{{title}} &nbsp; &nbsp;运营数据详情</span>
+        </h1>
+    </div>
+    <div ng-show="init">
+        <div class="colsm-12" ng-repeat="record in records">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{record.serverType|gameName}}</div>
+                <table class="table table-striped m-b-none">
+                    <tbody>
+                    <tr>
+                        <td>活跃玩家:</td>
+                        <td>{{record.activeUsers}}</td>
+                    </tr>
+                    <tr>
+                        <td>开局数:</td>
+                        <td>{{record.openTables}}</td>
+                    </tr>
+                    <tr>
+                        <td>耗钻数:</td>
+                        <td>{{record.usedCards}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div ng-show="none">
+        <div class="colsm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">暂无数据</div>
+            </div>
+        </div>
+        </divng>
+    </div>

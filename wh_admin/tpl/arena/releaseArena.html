@@ -1,0 +1,32 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">解散比赛场
+    <a ui-sref="app.index" class="pull-right text-info">首页</a>
+  </h1>
+</div>
+<div class="wrapper-md" ng-controller="releaseArenaController">
+  <!-- toaster directive -->
+  <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':false}"></toaster-container>
+  <!-- / toaster directive -->
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      解散比赛场
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">比赛场ID</label>
+          <div class="col-sm-10 col-lg-10">
+            <input type="text" class="form-control" ng-model="roomID">
+          </div>
+        </div>
+
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <div class="col-sm-2 col-sm-offset-10" style="float: right;">
+            <button type="submit" class="btn btn-primary" ng-click="releaseRoom()" >解散</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

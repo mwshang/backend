@@ -1,0 +1,54 @@
+<div class="modal-body wrapper-lg" >
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 class="m-t-none m-b font-thin">开通代理</h3>
+      <p>为玩家开通代理账号</p>
+      <form role="form">
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <label>玩家UID</label>
+            <div class="input-group">
+              <input type="number" class="form-control" ng-model="uid">
+              <span class="input-group-btn">
+                <button class="btn btn-success" type="button" ng-click="getUserName(uid)">读取昵称</button>
+              </span>
+            </div>
+            <span class="text-info">{{userName}}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="btn-group col-sm-12 col-xs-12" dropdown>
+            <button type="button" class="btn btn-primary col-sm-12 col-xs-12" dropdown-toggle>
+              {{agentLevel}} <span class="caret"></span>
+            </button>
+            <ul class=" col-xs-12 col-sm-12 dropdown-menu" style="width: 93%;margin-left: 3.5%" role="menu">
+              <li><a ng-click="selectLevelInt = 1; agentLevel='高级代理'">高级代理</a></li>
+              <li><a ng-click="selectLevelInt = 2; agentLevel='中级代理'">中级代理</a></li>
+              <li><a ng-click="selectLevelInt = 3; agentLevel='普通代理'">普通代理</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>邀请码</label>
+          <input type="number" class="form-control" ng-model="agentCode" placeholder="请输入6位数字邀请码,且不能以0开头">
+        </div>
+        <!--<div class="form-group">-->
+          <!--<label>代理佣金提成比例</label>-->
+          <!--<input type="number" class="form-control" ng-model="bonusPercent" placeholder="请输入代理佣金提成比例,比如30% 则输入30">-->
+        <!--</div>-->
+        <div class="form-group">
+          <label>手机号码</label>
+          <input type="number" class="form-control" ng-model="phoneNumber" placeholder="请输入手机号码">
+        </div>
+        <div class="form-group">
+          <label>代理账号初始登录密码</label>
+          <input type="password" class="form-control" ng-model="pwd" placeholder="请输入代理账号初始登录密码">
+        </div>
+        <div class="checkbox m-t-lg">
+          <button type="submit" class="btn btn-sm btn-default pull-left text-uc m-t-n-xs" ng-click="cancel()"><strong>取消</strong></button>
+          <button type="submit" class="btn btn-sm btn-danger pull-right text-uc m-t-n-xs" ng-click="auditAgent()"><strong>开通代理</strong></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

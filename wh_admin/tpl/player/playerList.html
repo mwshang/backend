@@ -1,0 +1,111 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">玩家查看
+        <a ui-sref="app.index" class="pull-right text-info">首页</a>
+    </h1>
+</div>
+<div class="wrapper-md" ng-controller="playerListController" ng-show="inited">
+    <!-- toaster directive -->
+    <toaster-container
+            toaster-options="{'position-class': 'toast-bottom-right', 'close-button':false}"></toaster-container>
+    <!-- / toaster directive -->
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a ng-click="refresh()" class="btn btn-default">
+                <i class="fa fa-undo"></i>
+            </a>
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-5 m-b-xs">
+                <label>按日期范围查看</label>
+                <p class="input-group">
+                    <input type="text" class="form-control" ng-click="openStart()" datepicker-popup="{{format}}"
+                           ng-model="dateBegin" is-open="openedStart" alt-input-formats="altInputFormats"
+                           ng-required="true" clear-text="清空" current-text="今天" close-text="关闭"/>
+                    <span class="input-group-addon">-</span>
+                    <input type="text" ng-click="openEnd()" class="form-control" datepicker-popup="{{format}}"
+                           ng-model="dateEnd" is-open="openedEnd" alt-input-formats="altInputFormats" ng-required="true"
+                           clear-text="清空" current-text="今天" close-text="关闭"/>
+                    <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="searchByDate()"><i
+                    class="glyphicon glyphicon-search"></i></button>
+          </span>
+                </p>
+            </div>
+            <div class="col-sm-3">
+                <label>按玩家UID查看</label>
+                <p class="input-group">
+                    <input type="number" class="form-control" ng-model="searchUID" placeholder="输入玩家UID">
+                    <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="searchByUID()"><i
+                    class="glyphicon glyphicon-search"></i></button>
+          </span>
+                </p>
+            </div>
+            <div class="col-sm-2">
+                <label>&nbsp;</label>
+                <p class="input-group">
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-danger" ng-click="playerBan()">
+                <script type="text/ng-template" id="playerLockModal.html">
+                  <div ng-include="'tpl/player/playerLockModal.html'"></div>
+                </script>
+              玩家封号
+            </button>
+          </span>
+                </p>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table width="100%" style="table-layout:fixed;" class="table table-striped b-t b-light" ui-jq="footable" >
+                <thead>
+                <tr>
+                    <th data-sort-ignore="true" width="30px"></th>
+                    <th data-sort-ignore="true" width="60px">UID</th>
+                    <th data-sort-ignore="true" width="25%">昵称</th>
+                    <th data-sort-ignore="true" width="80px">钻石数</th>
+                    <th data-sort-ignore="true" width="100px">绑定邀请码</th>
+                    <th data-hide="phone,tablet" width="100px">当月游戏次数</th>
+                    <th data-hide="phone,tablet" width="80px">当月总分</th>
+                    <th data-hide="phone,tablet" width="80px">当月胜率</th>
+                    <th data-hide="phone,tablet" width="100px">最近充值金额</th>
+                    <th data-hide="phone,tablet" width="100px">最近充值时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="record in players">
+                    <td></td>
+                    <td>{{record.uid}}</td>
+                    <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{record.nickName}}</td>
+                    <td>{{record.gemNum}}</td>
+                    <td>{{record.agentCode}}</td>
+                    <td data-hide="phone,tablet">{{record.playCount}}</td>
+                    <td data-hide="phone,tablet">{{record.winScore}}</td>
+                    <td data-hide="phone,tablet">{{getratio(record.winRatio)}}</td>
+                    <td data-hide="phone,tablet">{{payNum(record.orderAmount)}}</td>
+                    <td data-hide="phone,tablet">{{record.orderTime|myTime}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <small class="text-muted inline m-t-sm m-b-sm">第{{pageId+1}}页/共{{pageNum}}页</small>
+                </div>
+                <div class="col-sm-4 text-right text-center-xs">
+                    <div class="btn-group m-t-none m-b-none">
+                        <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info"
+                                                                                ng-click="pageroll(0)">第一页</a></button>
+                        <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info"
+                                                                                ng-click="pageroll(-1)">上一页</a></button>
+                        <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info"
+                                                                                ng-click="pageroll(1)">下一页</a></button>
+                        <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info"
+                                                                                ng-click="pageroll(2)">最后一页</a></button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

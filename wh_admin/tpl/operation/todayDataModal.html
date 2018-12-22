@@ -1,0 +1,25 @@
+<div style="background-color: white" class="col-sm-12">
+    <div class="wrapper-md" style="height:70px;">
+        <h1 class="m-n font-thin h3">
+            <span style="float:left">今日数据</span>
+            <a ng-click="refresh()" class="btn btn-info" style="float:right">刷新</a>
+        </h1>
+    </div>
+    <!--小时-->
+    <div class="panel panel-default" ng-init="inited">
+        <div class="panel-heading">
+            今日数据
+        </div>
+        <table class="table table-striped m-b-none">
+            <tbody>
+            <!--单条数据 循环到这里开始-->
+            <tr ng-repeat="item in itemsToday">
+                <td ng-class="item.icon" ng-style="{'color':'{{item.color}}'}"></td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.num }}</td>
+            </tr>
+            <!--单条数据 循环到这里结束-->
+            </tbody>
+        </table>
+    </div>
+</div>

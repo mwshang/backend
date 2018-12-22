@@ -1,0 +1,18 @@
+<div class="modal-body wrapper-lg">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 class="m-t-none m-b font-thin">佣金提取</h3>
+      <p>提取佣金到微信钱包,注意:须从微信登录后台才能提现</p>
+      <form role="form">
+        <div class="form-group">
+          <input type="number" ng-model="getMoney" class="form-control" placeholder="请输入提取金额，每笔提取金额大于100元">
+        </div>
+        <div class="checkbox m-t-lg">
+          <button type="submit" class="btn btn-sm btn-success pull-right text-uc m-t-n-xs" ng-click="withdrawal()">
+            <strong>提取(每笔手续费2.00元)</strong>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

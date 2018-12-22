@@ -1,0 +1,282 @@
+<div class="aside-wrap">
+    <!-- if you want to use a custom scroll when aside fixed, use the slimScroll
+      <div class="navi-wrap" ui-jq="slimScroll" ui-options="{height:'100%', size:'8px'}">
+    -->
+    <div class="navi-wrap">
+        <!-- nav -->
+        <nav ui-nav class="navi">
+            <!-- list -->
+            <ul class="nav">
+                <!--首页-->
+                <li ui-sref-active="active">
+                    <a ui-sref="app.index">
+                        <i class="icon-home"></i>
+                        <span class="font-bold">首页</span>
+                    </a>
+                </li>
+                <!--运营-->
+                <li>
+                    <a href class="auto">
+                        <span class="pull-right text-muted">
+                          <i class="fa fa-fw fa-angle-right text"></i>
+                          <i class="fa fa-fw fa-angle-down text-active"></i>
+                        </span>
+                        <i class="icon-list"></i>
+                        <span class="font-bold">运营</span>
+                    </a>
+                    <!--首页二级菜单-->
+                    <ul class="nav nav-sub dk">
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.operation">
+                                <span>运营统计表</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.operationData">
+                                <span>运营数据查询</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--end二级菜单-->
+                </li>
+                <!--营收查询-->
+                <li>
+                    <a href class="auto">
+                        <span class="pull-right text-muted">
+                          <i class="fa fa-fw fa-angle-right text"></i>
+                          <i class="fa fa-fw fa-angle-down text-active"></i>
+                        </span>
+                        <i class="icon-graph "></i>
+                        <span class="font-bold">营收</span>
+                    </a>
+                    <!--营收二级菜单-->
+                    <ul class="nav nav-sub dk">
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.revenueStatistics">
+                                <span>营收统计表</span>
+                            </a>
+                        </li>
+                        <!--todo:-->
+                        <!--<li ui-sref-active="active">-->
+                            <!--<a ui-sref="app.sharedRevenue">-->
+                                <!--<span>营收分成查询</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li ui-sref-active="active">-->
+                            <!--<a ui-sref="app.withdraw">-->
+                                <!--<span>代理提现查询</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    </ul>
+                    <!--end二级菜单-->
+                </li>
+                <!--玩家-->
+                <li>
+                    <a href class="auto">
+                        <span class="pull-right text-muted">
+                          <i class="fa fa-fw fa-angle-right text"></i>
+                          <i class="fa fa-fw fa-angle-down text-active"></i>
+                        </span>
+                        <i class="icon-users"></i>
+                        <span class="font-bold">玩家</span>
+                    </a>
+                    <!--营收二级菜单-->
+                    <ul class="nav nav-sub dk">
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.playerList">
+                                <span>玩家查看</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.playerLockList">
+                                <span>玩家封停列表</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.releaseRoom">
+                                <span>解散房间</span>
+                            </a>
+                        </li>
+                        <!--<li ui-sref-active="active">-->
+                            <!--<a ui-sref="app.playerKick">-->
+                                <!--<span>玩家房间踢出</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.sendDiamond">
+                                <span>充钻</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.sendDiamondList">
+                                <span>充钻统计表</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.playerRecord">
+                                <span>玩家战绩统计</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.playerRecordDetail">
+                                <span>玩家战绩详情</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--end二级菜单-->
+                </li>
+                <!--代理-->
+                <li>
+                    <a href class="auto">
+                        <span class="pull-right text-muted">
+                          <i class="fa fa-fw fa-angle-right text"></i>
+                          <i class="fa fa-fw fa-angle-down text-active"></i>
+                        </span>
+                        <i class="icon-user"></i>
+                        <span class="font-bold">代理</span>
+                    </a>
+                    <!--营收二级菜单-->
+                    <ul class="nav nav-sub dk">
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.agentList">
+                                <span>代理查看</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.agentLockList">
+                                <span>代理封停列表</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.agentChargeList">
+                                <span>充值流水查询</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.agentBonusList">
+                                <span>代理收支查询</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.agentBonusInListDaily">
+                                <span>代理佣金统计表</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.agentBonusOutListDaily">
+                                <span>代理提现统计表</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--end二级菜单-->
+                </li>
+                <!--游戏相关配置-->
+                <!--<li>-->
+                    <!--<a href class="auto">-->
+                        <!--<span class="pull-right text-muted">-->
+                          <!--<i class="fa fa-fw fa-angle-right text"></i>-->
+                          <!--<i class="fa fa-fw fa-angle-down text-active"></i>-->
+                        <!--</span>-->
+                        <!--<i class="icon-game-controller"></i>-->
+                        <!--<span class="font-bold">游戏相关配置</span>-->
+                    <!--</a>-->
+                    <!--&lt;!&ndash;营收二级菜单&ndash;&gt;-->
+                    <!--<ul class="nav nav-sub dk">-->
+                        <!--<li ui-sref-active="active">-->
+                            <!--<a ui-sref="app.releaseRoom">-->
+                                <!--<span>解散房间</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--&lt;!&ndash;end二级菜单&ndash;&gt;-->
+                <!--</li>-->
+                <!--比赛场相关配置-->
+                <li>
+                    <a href class="auto">
+                        <span class="pull-right text-muted">
+                          <i class="fa fa-fw fa-angle-right text"></i>
+                          <i class="fa fa-fw fa-angle-down text-active"></i>
+                        </span>
+                        <i class=" icon-trophy"></i>
+                        <span class="font-bold">比赛场</span>
+                    </a>
+                    <!--营收二级菜单-->
+                    <ul class="nav nav-sub dk">
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.releaseArena">
+                                <span>解散比赛场</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--end二级菜单-->
+                </li>
+                <!--设置-->
+                <li>
+                    <a href class="auto">
+                        <span class="pull-right text-muted">
+                          <i class="fa fa-fw fa-angle-right text"></i>
+                          <i class="fa fa-fw fa-angle-down text-active"></i>
+                        </span>
+                        <i class="icon-settings"></i>
+                        <span class="font-bold">设置</span>
+                    </a>
+                    <ul class="nav nav-sub dk">
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.agentNotice">
+                                <span>代理公告设置</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.gameNotice">
+                                <span>跑马灯设置</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.gameUrgentNotice">
+                                <span>游戏紧急公告</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.gameInformation">
+                                <span>游戏信息设置</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.changePassword">
+                                <span>修改密码</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.viewAgentPassword">
+                                <span>查看代理密码</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.changeCode">
+                                <span>修改绑定邀请码</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.changeDiamondPrice">
+                                <span>钻石价格设置</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.changeSharing">
+                                <span>联运分成比例设置</span>
+                            </a>
+                        </li>
+                        <!--todo:暂时去除 等待后续要求-->
+                        <!--<li ui-sref-active="active">-->
+                            <!--<a ui-sref="app.setBonus">-->
+                                <!--<span>代理佣金比例设置</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    </ul>
+                </li>
+            </ul>
+            <!-- / list -->
+        </nav>
+        <!-- nav -->
+    </div>
+</div>

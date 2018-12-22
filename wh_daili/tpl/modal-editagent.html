@@ -1,0 +1,28 @@
+<div class="modal-body wrapper-lg">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 class="m-t-none m-b font-thin">修改代理信息</h3>
+      <p></p>
+      <form role="form">
+        <div class="form-group">
+          <div class="btn-group" dropdown>
+            <button type="button" class="btn btn-primary" dropdown-toggle>
+              {{agentLevel}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a ng-click="selectLevelInt = 1; agentLevel='高级代理'">高级代理</a></li>
+              <li><a ng-click="selectLevelInt = 2; agentLevel='中级代理'">中级代理</a></li>
+              <li><a ng-click="selectLevelInt = 3; agentLevel='普通代理'">普通代理</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" ng-model="bonusPercent" placeholder="请输入代理佣金提成比例,比如70% 则输入70">
+        </div>
+        <div class="checkbox m-t-lg">
+          <button type="submit" class="btn btn-sm btn-success pull-right text-uc m-t-n-xs" ng-click="editAgent()"><strong>修改</strong></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

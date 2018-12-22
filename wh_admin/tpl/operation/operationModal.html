@@ -1,0 +1,99 @@
+
+<div style="background-color: white" class="col-sm-12">
+    <div class="wrapper-md" style="height:70px;">
+        <h1 class="m-n font-thin h3">
+            <a ng-click="cancel()" class="btn btn-default" style="float:left">返回</a>
+            <span style="float:right">{{title}}</span>
+        </h1>
+    </div>
+    <!--小时-->
+    <div class="col-sm-12" ng-if="timeType === 'daily'" ng-repeat="hour in indexModalData">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{hour.hour}}点</div>
+            <table class="table table-striped m-b-none">
+                <tbody>
+                <tr>
+                    <td>充钻数:</td>
+                    <td>{{hour.buyCards}}</td>
+                </tr>
+                <tr>
+                    <td>耗钻数:</td>
+                    <td>{{hour.usedCards}}</td>
+                </tr>
+                <tr>
+                    <td>开局数:</td>
+                    <td>{{hour.openTables}}</td>
+                </tr>
+                <tr>
+                    <td>新增玩家:</td>
+                    <td>{{hour.newUsers}}</td>
+                </tr>
+                <tr>
+                    <td>在线玩家:</td>
+                    <td>{{hour.activeUsers}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--日期-->
+    <div class="col-sm-12" ng-if="timeType === 'days'" ng-repeat="day in indexModalData">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{day.date}}日</div>
+            <table class="table table-striped m-b-none">
+                <tbody ng-click="daily(day.date)">
+                <tr>
+                    <td>充钻数:</td>
+                    <td>{{day.buyCards}}</td>
+                </tr>
+                <tr>
+                    <td>耗钻数:</td>
+                    <td>{{day.usedCards}}</td>
+                </tr>
+                <tr>
+                    <td>开局数:</td>
+                    <td>{{day.openTables}}</td>
+                </tr>
+                <tr>
+                    <td>新增玩家:</td>
+                    <td>{{day.newUsers}}</td>
+                </tr>
+                <tr>
+                    <td>在线玩家:</td>
+                    <td>{{day.activeUsers}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--月份-->
+    <div class="col-sm-12" ng-if="timeType === 'months'" ng-repeat="month in indexModalData">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{month.month}}月</div>
+            <table class="table table-striped m-b-none">
+                <tbody>
+                <tr>
+                    <td>充钻数:</td>
+                    <td>{{month.buyCards}}</td>
+                </tr>
+                <tr>
+                    <td>耗钻数:</td>
+                    <td>{{month.usedCards}}</td>
+                </tr>
+                <tr>
+                    <td>开局数:</td>
+                    <td>{{month.openTables}}</td>
+                </tr>
+                <tr>
+                    <td>新增玩家:</td>
+                    <td>{{month.newUsers}}</td>
+                </tr>
+                <tr>
+                    <td>在线玩家:</td>
+                    <td>{{month.activeUsers}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="aside-wrap">
+  <!-- if you want to use a custom scroll when aside fixed, use the slimScroll
+    <div class="navi-wrap" ui-jq="slimScroll" ui-options="{height:'100%', size:'8px'}">
+  -->
+  <div class="navi-wrap">
+    <!-- nav -->
+    <nav ui-nav class="navi">
+      <!-- list -->
+      <ul class="nav">
+        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+          <span translate="aside.nav.HEADER">Navigation</span>
+        </li>
+
+        <li ui-sref-active="active">
+          <a ui-sref="app.dashboard">
+
+            <span class="font-bold" >首页</span>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="app.charges">
+            <span class="font-bold" >今日充值</span>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="app.bonus">
+            <span class="font-bold" >可提佣金</span>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="app.players">
+            <span class="font-bold" >绑定玩家</span>
+          </a>
+        </li>
+        <li ui-sref-active="active" ng-controller="dashboardController">
+          <a ng-click="openAgents()" >
+            <span class="font-bold" >下级代理</span>
+          </a>
+        </li>
+
+
+
+      </ul>
+      <!-- / list -->
+    </nav>
+    <!-- nav -->
+  </div>
+</div>

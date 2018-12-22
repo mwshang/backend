@@ -1,0 +1,43 @@
+<div ng-controller="gameNoticeController" ng-init = "notice.data = ''">
+  <div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">跑马灯设置
+      <a ui-sref="app.index" class="pull-right text-info">首页</a>
+    </h1>
+  </div>
+  <!-- toaster directive -->
+  <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':false}"></toaster-container>
+  <!-- / toaster directive -->
+  <!--数据展示-->
+  <div class="wrapper-md">
+    <div class="row">
+      <!--今日数据-->
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            跑马灯列表
+            <a ng-click="openNoticeModal()" class="btn btn-success" style="float:right;height:25px;font-size: 10px;line-height:1;">添加跑马灯</a>
+          </div>
+          <table class="table table-striped m-b-none">
+            <tbody>
+            <!--单条数据 循环到这里开始-->
+            <tr ng-repeat="detail in notices">
+              <td>
+                <p>{{ detail.contents }}</p>
+                <div>
+                  <span style="color: grey;" class="col-sm-2">发布人:{{ detail.uid}}</span>
+                  <span style="color: grey;" class="col-sm-3 col-sm-offset-7">发布时间: {{detail.createdtime|myTimePipe}}</span>
+                </div>
+              </td>
+            </tr>
+            <!--单条数据 循环到这里结束-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Modal-->
+  <script type="text/ng-template" id="gameNoticeModal.html">
+    <div ng-include="'tpl/setting/gameNoticeModal.html'"></div>
+  </script>
+</div>

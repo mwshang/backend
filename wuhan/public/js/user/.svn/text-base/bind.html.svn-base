@@ -1,0 +1,22 @@
+
+<div class="form-signin panel panel-default">
+
+  <form class="panel-body" role="form">
+    <fieldset>
+      <legend>绑定代理邀请码</legend>
+      <div class="control-group">
+        <label class="control-label" for="inviteCode">请输入代理邀请码:</label>
+        <div class="controls">
+          <input type="text" class="form-control" id="inviteCode" name="inviteCode" ng-model="inviteCode" placeholder="邀请码" required />
+        </div>
+      </div>
+      <h4></h4>
+      <button class="btn btn-lg btn-primary btn-block" ng-click="bind()">绑定</button>
+      <p></p>
+      <div class="alert alert-warning" role="alert" ng-show="msg.length > 0">
+        <strong>提示：</strong> <label ng-bind="msg"></label>
+      </div>
+    </fieldset>
+  </form>
+
+</div> <!-- /container -->

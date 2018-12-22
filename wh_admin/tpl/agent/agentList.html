@@ -1,0 +1,158 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">代理查看
+    <a ui-sref="app.index" class="pull-right text-info">首页</a>
+  </h1>
+</div>
+<div class="wrapper-md" ng-controller="agentListController">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a ng-click="back()" ng-if="user.uid != pid" class="text-info">
+        后退
+      </a>
+        <a ng-click="refresh()" class="btn btn-default">
+            <i class="fa fa-undo"></i>
+        </a>
+    </div>
+    <!-- toaster directive -->
+    <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':false}"></toaster-container>
+    <!-- / toaster directive -->
+
+    <div class="row wrapper">
+      <div class="col-sm-5 m-b-xs">
+        <label>按日期范围查看</label>
+        <p class="input-group">
+          <input type="text"  class="form-control" ng-click="openStart()" datepicker-popup="{{format}}" ng-model="dateBegin" is-open="openedStart"  alt-input-formats="altInputFormats" ng-required="true" clear-text="清空" current-text="今天" close-text="关闭" />
+          <span class="input-group-addon">-</span>
+          <input type="text" ng-click="openEnd()" class="form-control"  datepicker-popup="{{format}}" ng-model="dateEnd" is-open="openedEnd"  alt-input-formats="altInputFormats"  ng-required="true" clear-text="清空" current-text="今天" close-text="关闭" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="searchByDate()"><i class="glyphicon glyphicon-search"></i></button>
+          </span>
+        </p>
+      </div>
+      <div class="col-sm-3">
+        <label>按代理UID查看</label>
+        <p class="input-group">
+          <input type="number" class="form-control" ng-model="searchUID" placeholder="输入代理UID">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="searchByUID()"><i class="glyphicon glyphicon-search"></i></button>
+          </span>
+        </p>
+      </div>
+      <div class="col-sm-2">
+        <label>&nbsp;</label>
+        <p class="input-group">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-info" ng-click="openAuditAgent()">
+                <script type="text/ng-template" id="registerAgentModal.html">
+                  <div ng-include="'tpl/agent/registerAgentModal.html'"></div>
+                </script>
+              开通代理
+            </button>
+          </span>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-danger" ng-click="agentLock()">
+                <script type="text/ng-template" id="agentLockModal.html">
+                  <div ng-include="'tpl/agent/agentLockModal.html'"></div>
+                </script>
+              代理封号
+            </button>
+          </span>
+        </p>
+      </div>
+    </div>
+    <table class="table m-b-none" ui-jq="footable"  style="table-layout:fixed;">
+      <thead>
+      <tr>
+        <th data-sort-ignore="true"width="20px"></th>
+        <th data-sort-ignore="true" width="60px">
+          UID
+        </th>
+        <th data-sort-ignore="true" width="25%">
+          昵称
+        </th>
+        <th data-sort-ignore="true" width="">
+          邀请码
+        </th>
+        <th data-hide="phone,tablet" width="">
+          代理等级
+        </th>
+        <th data-hide="phone,tablet" width="">
+          佣金比例
+        </th>
+        <th data-hide="phone,tablet" width="8%">
+          上级代理UID
+        </th>
+        <th data-hide="phone,tablet" width="">
+          直属玩家数
+        </th>
+        <th data-hide="phone,tablet" width="">
+          绑定玩家总数(含下级)
+        </th>
+        <th data-hide="phone,tablet" width="">
+          充值总金额
+        </th>
+        <th data-hide="phone,tablet" width="">
+          总佣金
+        </th>
+        <th data-hide="phone,tablet" width="8%">
+          下级代理数
+        </th>
+        <th data-sort-ignore="true" width="">
+          状态
+        </th>
+        <th data-sort-ignore="true" width="60px">
+          修改
+        </th>
+      </tr>
+      </thead>
+      <tbody ng-show="inited">
+      <tr ng-repeat="record in agents">
+        <td></td>
+        <td>{{record.uid}}</td>
+        <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{record.name}}</td>
+        <td>{{record.agentId}}</td>
+        <td data-value="1">
+          <span class="label bg-success" data-hide="phone,tablet" title="Active">{{record.agentLevel|agentLevelFormat}}</span>
+        </td>
+        <td  data-hide="phone,tablet">{{setBonusPercent(record.agentLevel)}}%</td>
+        <td  data-hide="phone,tablet">{{formatUID(record.level2Agent)}}</td>
+        <td  data-hide="phone,tablet">{{record.playerNum}}</td>
+        <td  data-hide="phone,tablet">{{record.agentPlayersNum + record.playerNum}}</td>
+        <td  data-hide="phone,tablet">{{record.totalAmount}}元</td>
+        <td  data-hide="phone,tablet">{{record.bonusTotal+0}}元</td>
+        <td  data-hide="phone,tablet">
+          <a ui-sref="app.agentList({pid: record.uid})" class="text-info" ng-if="record.agentNum>0">{{record.agentNum}} (点击查看详情)</a>
+          <a class="text-default" ng-if="record.agentNum==0">0</a>
+        </td>
+        <td data-value="1">
+          <span class="label bg-success"  title="Active" ng-show="record.locked == 0" >{{record.locked|lockFormat}}</span>
+          <span class="label bg-danger"  title="Active" ng-show="record.locked == 1" >{{record.locked|lockFormat}}</span>
+        </td>
+        <td>
+          <a ng-click="openEditAgent(record.uid,record.locked)">
+            <script type="text/ng-template" id="editAgentModal.html">
+              <div ng-include="'tpl/agent/editAgentModal.html'"></div>
+            </script>
+            <i class="fa fa-pencil-square-o text-info"></i>
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <footer class="panel-footer">
+      <div class="row">
+        <div class="col-sm-4 text-center">
+          <small class="text-muted inline m-t-sm m-b-sm">第{{pageId+1}}页/共{{pageNum}}页</small>
+        </div>
+        <div class="col-sm-4 text-right text-center-xs">
+            <div class="btn-group m-t-none m-b-none">
+              <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info" ng-click="pageroll(0)">第一页</a></button>
+              <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info" ng-click="pageroll(-1)">上一页</a></button>
+              <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info" ng-click="pageroll(1)">下一页</a></button>
+              <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info" ng-click="pageroll(2)">最后一页</a></button>
+            </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>

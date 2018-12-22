@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body onload="loaded();">
+<div class="phone hidden">
+    <div class="pageIcon"></div>
+    <div class="pageText"></div>
+    <button type="button" class="btn_01" id="btn">打开App</button>
+</div>
+<div class="dialog hidden">
+    <img src="" class="browser"> <img src="" class="dialogIcon">
+</div>
+<script src="mobile/sys/js/jquery.js"></script>
+<script src="mobile/sys/js/iscroll.js"></script>
+<script src="mobile/sys/js/view.js"></script>
+<script src="js/utils.js"></script>
+<script src="https://static.mlinks.cc/scripts/dist/mlink.min.js"></script>
+
+<script>
+    var myScroll;
+
+    function loaded() {
+        myScroll = new IScroll('#wrapper', {
+            // 禁止元素滚动
+            disableMouse: true,
+            disablePointer: true,
+            disableTouch: true
+        });
+    }
+
+    // 禁止背景滚动
+    document.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+    }, false);
+
+    $(function () {
+        var _app = app(getUrlParam('s'));
+
+        var option = {
+            // 安卓浏览器图标地址
+            dialogAndroid: 'img/dialogAndroid.png',
+            // iOS浏览器图标地址
+            dialogSarfari: 'img/dialogSarfari.png',
+
+            // 游戏icon
+            icon: _app.icon,
+            // 游戏标题
+            title: _app.title,
+
+            // 判断iOS
+            isiOS: function () {
+                return (/(iPhone|iPod|iPad);?/i).test(window.navigator.userAgent);
+            },
+            // 判断Android
+            isAndroid: function () {
+                return (/Android/i).test(window.navigator.userAgent);
+            },
+            // 判断微信
+            isWeChat: function () {
+                return (/MicroMessenger/i).test(window.navigator.userAgent);
+            }
+        };
+
+        $('.dialogIcon').attr('src', option.icon);
+        $('.pageIcon').css({
+            "backgroundImage": "url(" + option.icon + ")"
+        });
+        $('.pageText').text(option.title);
+        $('.dialog').on('click', function () {
+            $(this).hide();
+        });
+		
+		new Mlink({
+			mlink: 'https://ab94li.mlinks.cc/'+getUrlParam('p')+(getUrlParam('r') == '0' ? '' : '?roomId='+getUrlParam('r')),//短链地址
+			button:document.querySelector('button#btn'),
+			autoLaunchApp : false
+		});
+
+        // 流程代码
+        if (option.isiOS()) {
+            // iOS系统
+            console.log('iOS');
+
+            // dialog图标
+            $('.phone').show();
+            $('.browser').attr('src', option.dialogSarfari);
+        } else {
+            // 安卓系统 todo
+            console.log('Android');
+
+            // dialog图标
+            $('.phone').show();
+            $('.browser').attr('src', option.dialogAndroid);
+        }
+
+//        if (option.isWeChat()) {
+//            // 流程代码
+//            if (option.isiOS()) {
+//                // iOS系统
+//                console.log('iOS');
+//
+//                // dialog图标
+//                $('.phone').show();
+//                $('.browser').attr('src', option.dialogSarfari);
+//            } else {
+//                // 安卓系统 todo
+//                console.log('Android');
+//
+//                // dialog图标
+//                $('.phone').show();
+//                $('.browser').attr('src', option.dialogAndroid);
+//            }
+//        } else {
+//            window.location = 'http://mall.'+_url(getUrlParam('s'))+'/download.html?name='+getUrlParam('s');
+//        }
+    });
+</script>
+</body>
+</html>

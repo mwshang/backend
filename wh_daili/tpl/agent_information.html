@@ -1,0 +1,49 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">个人信息
+    <a ui-sref="app.dashboard" class="pull-right text-info">
+      <!--<i class="fa fa-home text-x text-info "></i>-->
+      首页
+    </a>
+  </h1>
+</div>
+<div ng-controller="agentInformationController">
+  <div class="wrapper-md">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            用户信息
+          </div>
+          <table class="table table-striped m-b-none">
+            <tbody>
+            <tr>
+              <td>昵称</td>
+              <td>{{user.name}}</td>
+            </tr>
+            <tr>
+              <td>代理等级</td>
+              <td><span class="label bg-success">{{agent.agentLevel | agentLevelFormat }}</span></td>
+            </tr>
+            <tr>
+              <td>UID</td>
+              <td>{{user.uid}}</td>
+            </tr>
+            <tr>
+              <td>剩余钻石</td>
+              <td>{{user.gemNum}}</td>
+            </tr>
+            <tr>
+              <td>邀请码</td>
+              <td>{{user.agentId}}</td>
+            </tr>
+            <tr>
+              <td>佣金比例</td>
+              <td>{{setBonusPercent(agent.agentLevel)}}%</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

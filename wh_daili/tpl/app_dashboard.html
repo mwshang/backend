@@ -1,0 +1,62 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" style="table-layout: auto"  ng-init="app.settings.asideFolded = false; app.settings.asideDock = false;"
+     ng-controller="AppCtrl">
+  <!-- main -->
+  <!-- toaster directive -->
+  <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':false}"></toaster-container>
+  <!-- / toaster directive -->
+  <div class="col" ng-controller="dashboardController">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md" ng-show="isHave && inited">
+        <div  style="color: red;">
+          <p><i class="icon-volume-2"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{notice.contents}}</p>
+        </div>
+    </div>
+    <!-- / main header -->
+    <div class="wrapper-md" ng-show="inited" style="margin-top: 2em">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row row-sm text-center">
+            <div class="col-xs-6">
+              <a ui-sref="app.charges" class="block panel  item" style="background:#9564E2;height: 8em;">
+                <span class=" text-xxs text-white">今日充值</span>
+                <span class="text-white font-thin text-3x block">{{agent.chargeAmount}}</span>
+              </a>
+            </div>
+            <div class="col-xs-6">
+              <a ui-sref="app.bonus" class="block panel   item" style="background:#F44542;height: 8em;">
+                <span class=" text-xxs text-white">可提佣金</span>
+                <span class="text-white font-thin text-3x block">{{agent.bonusAvail}}</span>
+              </a>
+            </div>
+            <div class="col-xs-6">
+              <a ui-sref="app.players" class="block panel  item"  style="background:#49BF67;height: 8em;">
+                <span class=" text-xxs text-white">绑定玩家</span>
+                <span class="text-white font-thin text-3x block">{{agent.playerNum}}</span>
+              </a>
+            </div>
+            <div class="col-xs-6">
+              <div ng-click="openAgents()" class="panel  item" style="background:#F8A326;height: 8em;">
+                <span class=" text-xxs text-white">下级代理</span>
+                <div class="font-thin text-3x text-white">{{agent.agentNum}}</div>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <a ui-sref="app.qrcode"  class="block panel  item" style="background:#00ACEC;height: 8em;">
+                <span class=" text-lg text-cente text-white" style="line-height: 6em">分享邀请码</span>
+                <!--<span class="text-white font-thin text-3x block"> </span>-->
+              </a>
+            </div>
+            <div class="col-xs-6">
+              <a ui-sref="app.agentInformation" class="block panel  item" style="background:#999999;height: 8em;">
+                <span class=" text-lg text-center text-white" style="line-height: 6em">个人信息</span>
+                <!--<span class="text-white font-thin text-3x block"> </span>-->
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+  <!-- / main -->
+  </div>
+</div>

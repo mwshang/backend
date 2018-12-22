@@ -1,0 +1,50 @@
+
+
+<div class="form-signup panel panel-default">
+  <form class="panel-body" role="form">
+    <fieldset>
+      <legend>账号注册</legend>
+      <div class="control-group">
+        <label class="control-label" for="uid">游戏ID</label>
+        <div class="controls">
+          <input type="text" class="form-control" id="uid" name="uid" ng-model="user.uid" placeholder="游戏ID" required />
+          <p class="help-block">您在游戏中的ID</p>
+        </div>
+      </div>
+      <!--<div class="control-group">-->
+        <!--<label class="control-label" for="username">用户名</label>-->
+        <!--<div class="controls">-->
+          <!--<input type="text" class="form-control" id="username" name="username" ng-model="user.name" placeholder="用户名" required />-->
+          <!--<p class="help-block">你的用户名，不能与他人用户名重复</p>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <div class="control-group">
+        <label class="control-label" for="mail">邮箱</label>
+        <div class="controls">
+          <input type="email" class="form-control" id="mail" name="mail" ng-model="user.mail" placeholder="邮箱" required />
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="password">密码</label>
+        <div class="controls">
+          <input type="password" class="form-control" id="password" name="password" ng-model="user.pwd" required>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="passwordcfm">确认密码</label>
+        <div class="controls">
+          <input type="password" class="form-control" id="passwordcfm" name="passwordcfm" ng-model="user.pwd2" required>
+        </div>
+      </div>
+      <div class="form-actions pull-right">
+        <button ng-click="register()" class="btn btn-primary">注册</button>
+      </div>
+    </fieldset>
+  </form>
+
+    <div class="alert alert-warning" role="alert" ng-show="msg.length > 0">
+      <strong>提示：</strong> <label ng-bind="msg"></label>
+    </div>
+</div>

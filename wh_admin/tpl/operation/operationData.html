@@ -1,0 +1,111 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">运营数据查询
+        <a ui-sref="app.index" class="pull-right text-info">首页</a>
+    </h1>
+</div>
+<div class="wrapper-md" ng-controller="operationDataController">
+    <!-- toaster directive -->
+    <toaster-container
+            toaster-options="{'position-class': 'toast-bottom-right', 'close-button':false}"></toaster-container>
+    <!-- / toaster directive -->
+
+    <div class="panel panel-default">
+        <div class="panel-heading"></div>
+        <div class="row wrapper">
+            <div class="col-sm-5 m-b-xs">
+                <label>按日期范围查看</label>
+                <p class="input-group">
+                    <input type="text" class="form-control" ng-click="openStart()" datepicker-popup="{{format}}"
+                           ng-model="dateBegin" is-open="openedStart" alt-input-formats="altInputFormats"
+                           ng-required="true" clear-text="清空" current-text="今天" close-text="关闭"/>
+                    <span class="input-group-addon">-</span>
+                    <input type="text" ng-click="openEnd()" class="form-control" datepicker-popup="{{format}}"
+                           ng-model="dateEnd" is-open="openedEnd" alt-input-formats="altInputFormats" ng-required="true"
+                           clear-text="清空" current-text="今天" close-text="关闭"/>
+                    <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="searchByDate()"><i
+                    class="glyphicon glyphicon-search"></i></button>
+          </span>
+                </p>
+            </div>
+            <div class="col-sm-5">
+                <label style="color:red">温馨提示:该表为历史数据查询</label>
+                <p class="input-group">
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-info" ng-click="openTodayDataModal()">
+              获取当日信息
+            </button>
+            <script type="text/ng-template" id="todayDataModal.html">
+               <div ng-include="'tpl/operation/todayDataModal.html'"></div>
+            </script>
+          </span>
+                </p>
+            </div>
+        </div>
+        <div class="row wrapper" ng-show="inited">
+            <div class="col-sm-2">日均新增玩家:&nbsp;<span class="text-danger">{{avg.newUsers}}</span></div>
+            <div class="col-sm-2">日均活跃玩家:&nbsp;<span class="text-danger">{{avg.activeUsers}}</span></div>
+            <div class="col-sm-2">日均开局数:&nbsp;<span class="text-danger">{{avg.newUsers}}</span></div>
+            <div class="col-sm-2">日均耗钻数:&nbsp;<span class="text-danger">{{avg.usedCards}}</span></div>
+            <div class="col-sm-2">日均购钻数:&nbsp;<span class="text-danger">{{avg.buyCards}}</span></div>
+        </div>
+        <div class="table-responsive" ng-show="inited">
+            <table width="100%" style="table-layout:fixed;" ui-jq="footable" class="table table-striped b-t b-light ">
+                <thead>
+                <tr>
+                    <th data-sort-ignore="true" width="10px"></th>
+                    <th data-sort-ignore="true" width="10%">日期</th>
+                    <th data-sort-ignore="true" width="10%">新增玩家</th>
+                    <th data-sort-ignore="true" width="10%">活跃玩家</th>
+                    <th data-hide="phone,tablet" width="10%">总玩家数</th>
+                    <th data-hide="phone,tablet" width="10%">开局数</th>
+                    <th data-hide="phone,tablet" width="10%">耗钻数</th>
+                    <th data-hide="phone,tablet" width="10%">购钻数</th>
+                    <th data-hide="phone,tablet" width="10%">当日充值</th>
+                    <th data-sort-ignore="true" width="10%">查看详情</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="record in records">
+                    <td></td>
+                    <td>{{record.createTime}}</td>
+                    <td>{{record.newUsers}}</td>
+                    <td>{{record.activeUsers}}</td>
+                    <td data-hide="phone,tablet">{{record.totalUsers}}</td>
+                    <td data-hide="phone,tablet">{{record.openTables}}</td>
+                    <td data-hide="phone,tablet">{{record.usedCards}}</td>
+                    <td data-hide="phone,tablet">{{record.buyCards}}</td>
+                    <td data-hide="phone,tablet">{{record.incomeTotal}}</td>
+                    <td>
+                        <a ng-click="operationDetail(record.createTime)">
+                            <script type="text/ng-template" id="operationDetailModal.html">
+                                <div ng-include="'tpl/operation/operationDetailModal.html'"></div>
+                            </script>
+                            <i class="fa fa-pencil-square-o text-info"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <small class="text-muted inline m-t-sm m-b-sm">第{{pageId+1}}页/共{{pageNum}}页</small>
+                </div>
+                <div class="col-sm-4 text-right text-center-xs">
+                    <div class="btn-group m-t-none m-b-none">
+                        <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info"
+                                                                                ng-click="pageroll(0)">第一页</a></button>
+                        <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info"
+                                                                                ng-click="pageroll(-1)">上一页</a></button>
+                        <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info"
+                                                                                ng-click="pageroll(1)">下一页</a></button>
+                        <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info"
+                                                                                ng-click="pageroll(2)">最后一页</a></button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

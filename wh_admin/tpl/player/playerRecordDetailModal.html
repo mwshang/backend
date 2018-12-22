@@ -1,0 +1,56 @@
+<div style="background-color: white" class="col-sm-12">
+    <div class="wrapper-md" style="height:70px;">
+        <h1 class="m-n font-thin h3">
+            <span style="float:left">战绩详情</span>
+        </h1>
+    </div>
+    <!--小时-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        </div>
+        <table class="table table-striped m-b-none">
+            <tbody>
+            <tr>
+                <td>玩家1:{{data.uid1}}</td>
+                <td>得分:{{data.score1}}</td>
+                <td>胜率:{{getratio(data.ratio1)}}</td>
+            </tr>
+            <tr ng-if="data.uid2 > 0">
+                <td>玩家2:{{data.uid2}}</td>
+                <td>得分:{{data.score2}}</td>
+                <td>胜率:{{getratio(data.ratio2)}}</td>
+            </tr>
+            <tr ng-if="data.uid3 > 0">
+                <td>玩家3:{{data.uid3}}</td>
+                <td>得分:{{data.score3}}</td>
+                <td>胜率:{{getratio(data.ratio3)}}</td>
+            </tr>
+            <tr ng-if="data.uid4 > 0">
+                <td>玩家4:{{data.uid4}}</td>
+                <td>得分:{{data.score4}}</td>
+                <td>胜率:{{getratio(data.ratio4)}}</td>
+            </tr>
+            <tr ng-if="data.uid5 > 0">
+                <td>玩家5:{{data.uid5}}</td>
+                <td>得分:{{data.score5}}</td>
+                <td>胜率:{{getratio(data.ratio5)}}</td>
+            </tr>
+            <tr ng-if="data.uid6 > 0">
+                <td>玩家6:{{data.uid6}}</td>
+                <td>得分:{{data.score6}}</td>
+                <td>胜率:{{getratio(data.ratio6)}}</td>
+            </tr>
+            <tr ng-if="data.uid7 > 0">
+                <td>玩家7:{{data.uid7}}</td>
+                <td>得分:{{data.score7}}</td>
+                <td>胜率:{{getratio(data.ratio7)}}</td>
+            </tr>
+            <tr ng-if="data.uid8 > 0">
+                <td>玩家8:{{data.uid8}}</td>
+                <td>得分:{{data.score8}}</td>
+                <td>胜率:{{getratio(data.ratio8)}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

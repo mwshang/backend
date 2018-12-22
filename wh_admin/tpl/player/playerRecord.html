@@ -1,0 +1,90 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">玩家战绩统计
+        <a ui-sref="app.index" class="pull-right text-info">首页</a>
+    </h1>
+</div>
+<div class="wrapper-md" ng-controller="playerRecordController" ng-show="inited">
+    <!-- toaster directive -->
+    <toaster-container
+            toaster-options="{'position-class': 'toast-bottom-right', 'close-button':false}"></toaster-container>
+    <!-- / toaster directive -->
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a ng-click="refresh()" class="btn btn-default">
+                <i class="fa fa-undo"></i>
+            </a>
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-5 col-xs-12 m-b-xs">
+                <label>日期范围</label>
+                <p class="input-group">
+                    <input type="text" class="form-control" ng-click="openStart()" datepicker-popup="{{format}}"
+                           ng-model="dateBegin" is-open="openedStart" alt-input-formats="altInputFormats"
+                           ng-required="true" clear-text="清空" current-text="今天" close-text="关闭"/>
+                    <span class="input-group-addon">-</span>
+                    <input type="text" ng-click="openEnd()" class="form-control" datepicker-popup="{{format}}"
+                           ng-model="dateEnd" is-open="openedEnd" alt-input-formats="altInputFormats" ng-required="true"
+                           clear-text="清空" current-text="今天" close-text="关闭"/>
+                </p>
+            </div>
+            <div class="col-sm-3 col-xs-8">
+                <label>玩家UID&nbsp;&nbsp;<span class="text-danger">不填搜索全部玩家</span></label>
+                <p class="input-group">
+                    <input type="number" class="form-control" ng-model="searchUID" placeholder="输入玩家UID">
+                </p>
+            </div>
+            <div class="col-sm-2 col-xs-4">
+                <label>&nbsp;</label>
+                <p class="input-group">
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-info" ng-click="searchByDate()">
+              立即搜索
+            </button>
+          </span>
+                </p>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table width="100%" style="table-layout:fixed;" class="table table-striped b-t b-light ">
+                <thead>
+                <tr>
+                    <th width="60px">UID</th>
+                    <th width="30%">昵称</th>
+                    <th width="80px">局数</th>
+                    <th width="100px">胜率</th>
+                    <th width="100px">总得分</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="record in players">
+                    <td>{{record.uid}}</td>
+                    <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{record.name}}</td>
+                    <td>{{record.num}}</td>
+                    <td>{{getratio(record.ratio)}}</td>
+                    <td>{{record.score}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <small class="text-muted inline m-t-sm m-b-sm">第{{pageId+1}}页/共{{pageNum}}页</small>
+                </div>
+                <div class="col-sm-4 text-right text-center-xs">
+                    <div class="btn-group m-t-none m-b-none">
+                        <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info"
+                                                                                ng-click="pageroll(0)">第一页</a></button>
+                        <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info"
+                                                                                ng-click="pageroll(-1)">上一页</a></button>
+                        <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info"
+                                                                                ng-click="pageroll(1)">下一页</a></button>
+                        <button type="button" class="btn btn-default btn-sm"><a class="m-n font-thin text-info"
+                                                                                ng-click="pageroll(2)">最后一页</a></button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

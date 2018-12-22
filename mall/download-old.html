@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>正在进入</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<style>
+			*,
+			::before,
+			::after {
+				margin: 0;
+				padding: 0;
+				-webkit-tap-highlight-color: transparent;
+				/*清除点击默认的高亮效果*/
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				/*以你的border开始计算你的宽度*/
+			}
+			
+			a {
+				text-decoration: none;
+				color: #000;
+			}
+			
+			input {
+				border: none;
+				resize: none;
+				outline: none;
+				/*清除选中效果*/
+				-webkit-appearance: none;
+				/*清楚浏览器默认的样式*/
+			}
+			/*清除浮动*/
+			
+			.clearfix::before,
+			.clearfix::after {
+				content: ".";
+				display: block;
+				height: 0;
+				line-height: 0;
+				visibility: hidden;
+				clear: both;
+			}
+			.down{
+				min-width: 320px;
+				max-width: 750px;
+				margin: 0 auto;
+			}
+			.down-nav{
+				width: 100%;
+				min-height: 100vh;
+				margin: 0 auto;
+				
+			}
+			.header{
+				width: 100%;
+				height: 0.88rem;
+				background: url(down-05.png) no-repeat;
+				background-size: 100%;
+				text-align: center;
+				line-height: 0.88rem;
+				font-size: 0.42rem;
+				color: #fff;
+			}
+			.cen{
+				width: 100%;
+				padding: 0.25rem 4% 0.3rem 4%;
+				
+				background-color: #f2f2f2;
+			}
+			.top{
+				width: 92%;
+				margin: 0 auto;
+				padding-top: 0.3rem;
+				padding-bottom: 0.5rem;
+			}
+			.leftimg{
+				width: 34%;
+				height: 2.3rem;
+				float: left;
+				margin-right: 5%;
+			}
+			.leftimg img{
+				width: 100%;
+				height: 100%;
+			}
+			.right{
+				float: left;
+				width: 60%;
+			}
+			.p1{
+				font-size: 0.5rem;
+				line-height: 0.6rem;
+			}
+			.p2{
+				font-size: 0.3rem;
+				line-height: 0.6rem;
+				color: #999;
+			}
+            .imgbox{
+				width: 100%;
+				height: 0.52rem;
+				padding-top: 0.1rem;
+			} 
+			.imgbox img{
+				width: 0.36rem;
+				height: 0.36rem;
+				float: left;
+				margin-right: 2%;
+			}
+			.imgbox2{
+				width: 100%;
+				height: 0.5rem;
+			}
+			.imgbox2 img{
+				width: 0.24rem;
+				height: 0.24rem;
+				float: left;
+				margin: 0.13rem 1% 0 0;
+			}
+			.imgbox2 p{
+				float: left;
+				font-size: 0.3rem;
+				line-height: 0.5rem;
+				color: #38b774;
+				margin-right: 3%;
+			}
+			.a1{
+				width: 92%;
+				height: 1.1rem;
+				margin: 0 auto;
+				text-align: center;
+				color: #fff;
+				line-height: 1.1rem;
+				font-size: 0.56rem;
+				display: block;
+				border-radius: 0.25rem;
+				margin-bottom: 0.1rem;
+				    background: #38b774 url(down-05.png) repeat-x;
+                 background-size: contain;
+			}
+			.p3{
+				font-size: 0.4rem;
+				line-height: 0.6rem;
+				padding-left: 3%;
+				margin-bottom: 0.15rem;
+				position: relative;
+			}
+			.p3 span{
+				position: absolute;
+				width: 25%;
+				height: 4px;
+			    background-color: #007ae9;
+			    top: 125%;
+			    left: 5%;
+			}
+			.imgdiv{
+				width: 100%;
+				height: 4.2rem;
+				/*padding-top: 0.3rem;*/
+				/*border-top: 4px solid #d7d7d7;*/
+				
+			}
+			.imgdiv2{
+				width: 100%;
+				height: 100%;
+				background: url(down-08.png) no-repeat;
+				background-size: 100%;
+			}
+			.p5{
+				font-size: 0.32rem;
+				color: 000;
+				line-height: 0.8rem;
+			}
+			.p4{
+				margin: 0 auto;
+				font-size: 0.28rem;
+				line-height: 0.4rem;
+				color: #939393;
+			}
+			.bot{
+				width: 100%;
+				/*height: 2rem;*/
+				background-color: #191d3a;
+				text-align: center;
+				margin-top: 0.6rem;
+			}
+			.bot-p{
+				color: #fff;
+				font-size: 0.3rem;
+				line-height: 0.7rem;
+				
+			}
+             .ze{
+             	width: 100%;
+             	height: 100vh;
+             	background-color: rgba(00,00,00,0.8);
+             	position: fixed;
+             	z-index: 20;
+             	top: 0;
+             	display: none;
+             }
+             .zao{
+             	width: 100%;
+             	height: 100%;
+             	background: url(down-07.png) no-repeat;
+             	background-size: 100%;
+             }
+		</style>
+		<script src="libs/jquery/jquery.min.js"></script>
+		<script src="js/utils.js"></script>
+		<script type="text/javascript">
+			// rem
+			(function(doc, win) {
+				var docEl = doc.documentElement,
+					resizeEvt = "orientationchange" in window ? "orientationchange" : "resize",
+					recalc = function() {
+						var clientWidth = docEl.clientWidth;
+						if(!clientWidth) return;
+						if(clientWidth >= 750) {
+							docEl.style.fontSize = "100px";
+						} else {
+							docEl.style.fontSize = 100 * (clientWidth / 750) + "px";
+						}
+						// alert(docEl.style.fontSize)
+					};
+
+				if(!doc.addEventListener) return;
+				var browserInfo = navigator.userAgent.toLowerCase();
+				if(!(browserInfo.indexOf("ucbrowser") != -1 && (browserInfo.indexOf('android') > -1 || browserInfo.indexOf('adr') > -1))) {
+					win.addEventListener(resizeEvt, recalc, false);
+				}
+				doc.addEventListener("DOMContentLoaded", recalc, false);
+				// 解决UC渲染
+				recalc();
+			})(document, window);
+			// 是否是安卓
+            function isAndroid() {
+                var u = navigator.userAgent;
+                if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) { //安卓手机
+                    return true;    
+                }
+                return false;
+            }
+//          是否为ios
+            function isIOS(){
+                var u = navigator.userAgent;
+                var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+                return isiOS;
+            }
+//          是否为微信
+            function isRunOnWeChat(){
+                var ua = navigator.userAgent.toLowerCase();  
+                if(ua.match(/MicroMessenger/i)=="micromessenger") {  
+                    return true;  
+                } else {  
+                    return false;  
+                }  
+            }
+
+            if (getUrlParam('name') == 'yc') {
+            	window.location = 'https://ab94li.mlinks.cc/A0Ay';
+			}
+
+			var _app = app(getUrlParam('name'));
+			if (getUrlParam('name') == 'wh') {
+				document.title = '武汉麻将';
+			} else if (getUrlParam('name') == 'whpdk') {
+				document.title = '网红牌友圈';
+			} else if (getUrlParam('name') == 'ls') {
+				document.title = '丽水欢乐堂';
+			} else if (getUrlParam('name') == 'lyt') {
+				document.title = '老友堂娱乐';
+			} else if (getUrlParam('name') == 'nbgsh') {
+				document.title = '宁波杠上花';
+			} else if (getUrlParam('name') == 'xh') {
+				document.title = '星火棋牌';
+			}
+			$(document).ready(function(){
+				if (getUrlParam('name') == 'ls') {
+					$("#footer").text('Copyright©2017   丽水欢乐堂');
+				} else if (getUrlParam('name') == 'wh') {
+					$("#footer").text('Copyright©2017   武汉麻将');
+				} else if (getUrlParam('name') == 'whpdk') {
+					$("#footer").text('Copyright©2017   网红牌友圈');
+				} else if (getUrlParam('name') == 'lyt') {
+					$("#footer").text('Copyright©2017   老友堂娱乐');
+				} else if (getUrlParam('name') == 'nbgsh') {
+					$("#footer").text('Copyright©2017   宁波杠上花');
+				} else if (getUrlParam('name') == 'xh') {
+					$("#footer").text('Copyright©2017   星火棋牌');
+				}
+
+			 	initialize();
+                function initialize(){
+					$(".imgdiv2").css("background-image","url("+_app.preview+")");
+					$("#title").text(_app.title);
+					$("#desc").text(_app.desc);
+					$("#detail1").text(_app.detail1);
+					$("#detail2").text(_app.detail2);
+					$("#icon").attr("src", _app.icon);
+
+                  	// 如果在微信中打开，直接弹遮罩
+                    if(true == isRunOnWeChat()){
+                        $(".ze").show();
+						if (true == isIOS()) {
+                            $(".zao").css("background-image","url(img/down-08.png)");
+							$("#andriodUrl").hide();
+							if (_app.ios.length == 0)
+								$("#iosUrl").hide();
+							if (_app.ioscert.length == 0)
+								$("#iosCertUrl").hide();
+                        } else {
+							$(".zao").css("background-image","url(img/down-07.png)");
+							$("#iosUrl").hide();
+							$("#iosCertUrl").hide();
+						}
+                    } else {
+                        if (true == isIOS()) {
+							$("#andriodUrl").hide();
+							$("#iosCertUrl").attr("href", 'itms-services://?action=download-manifest&url=' + _app.ioscert);
+							$("#iosUrl").attr("href", _app.ios);
+							if (_app.ios.length == 0)
+								$("#iosUrl").hide();
+							if (_app.ioscert.length == 0)
+								$("#iosCertUrl").hide();
+                        } else {
+							$("#iosUrl").hide();
+							$("#iosCertUrl").hide();
+							if (getUrlParam('c') != undefined && _app.android_channels[getUrlParam('c')] != undefined)
+								$("#andriodUrl").attr("href", _app.android_channels[getUrlParam('c')]);
+							else
+								$("#andriodUrl").attr("href", _app.android);
+						}
+                    }
+                }
+			 })
+
+		</script>
+	</head>
+	<body>
+		<div class="down">
+			<div class="ze">
+				<div class="zao"></div>
+			</div>
+			<div class="down-nav">
+			    
+				<div class="top clearfix">
+						<div class="leftimg">
+							<img id="icon" src=""/>
+						</div>
+						<div class="right clearfix">
+							<p class="p1" id="title"></p>
+							<div class="imgbox">
+								<img src="img/down-03.png"/>
+								<img src="img/down-03.png"/>
+								<img src="img/down-03.png"/>
+								<img src="img/down-03.png"/>
+								<img src="img/down-03.png"/>
+							</div>
+							<p class="p2" id="desc"></p>
+							<div class="imgbox2">
+								<img src="img/down-04.png"/>
+								<p>官方版</p>
+								<img src="img/down-04.png"/>
+								<p>零作弊</p>
+								<img src="img/down-04.png"/>
+								<p>无广告</p>
+							</div> 
+						</div>
+					</div>
+					<a id="andriodUrl" href="" class="a1">游戏下载</a>
+					<a id="iosUrl" href="" class="a1">苹果下载(应用商店)</a>
+					<a id="iosCertUrl" href="" class="a1">苹果下载(需要添加信任)</a>
+				<div class="cen clearfix">
+
+					<div class="imgdiv">
+						<div class="imgdiv2"></div>
+					</div>
+					<p class="p5">游戏介绍：</p>
+					<p class="p4" id="detail1"></p>
+					<p class="p4" id="detail2"></p>
+				</div>
+				<div class="bot">
+					<p class="bot-p" id="footer">
+						Copyright©2017 &nbsp;&nbsp;&nbsp;&nbsp;
+					</p>
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

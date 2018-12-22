@@ -1,0 +1,44 @@
+<div class="modal-body wrapper-lg" >
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 class="m-t-none m-b font-thin">代理账号封停</h3>
+      <form role="form">
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <label>代理UID</label>
+            <div class="input-group">
+              <input type="number" class="form-control" ng-model="uid">
+              <span class="input-group-btn">
+                <button class="btn btn-success" type="button" ng-click="getUserName(uid)">读取昵称</button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row" ng-show="inited">
+          <div class="col-sm-12">
+            <label>代理昵称</label>
+            <span class="text-info input-group">{{userName}}</span>
+          </div>
+        </div>
+        <!--todo: 账号封停时间选择-->
+        <!--<div class="form-group row" ng-show="inited">-->
+          <!--<div class="btn-group col-sm-12 col-xs-12" dropdown>-->
+            <!--<button type="button" class="btn btn-primary col-sm-12 col-xs-12" dropdown-toggle>-->
+              <!--封停时间 <span class="caret"></span>-->
+            <!--</button>-->
+            <!--<ul class=" col-xs-12 col-sm-12 dropdown-menu" style="width: 93%;margin-left: 3.5%" role="menu">-->
+              <!--<li><a ng-click="banTime = 1">1天</a></li>-->
+              <!--<li><a ng-click="banTime = 3">3天</a></li>-->
+              <!--<li><a ng-click="banTime = 7">7天</a></li>-->
+              <!--<li><a ng-click="banTime = 30">30天</a></li>-->
+              <!--<li><a ng-click="banTime = 0">永久</a></li>-->
+            <!--</ul>-->
+          <!--</div>-->
+        <!--</div>-->
+        <div class="checkbox m-t-lg" ng-show="inited">
+          <button type="submit" class="btn btn-sm btn-danger pull-right text-uc m-t-n-xs" ng-click="agentBan()"><strong>账号封停</strong></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

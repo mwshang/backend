@@ -1,0 +1,83 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">玩家封停列表
+        <a ui-sref="app.index" class="pull-right text-info">首页</a>
+    </h1>
+</div>
+<div class="wrapper-md" ng-controller="playerLockListController">
+    <div class="panel panel-default">
+        <!-- toaster directive -->
+        <toaster-container
+                toaster-options="{'position-class': 'toast-bottom-right', 'close-button':false}"></toaster-container>
+        <!-- / toaster directive -->
+
+        <div class="row wrapper">
+            <div class="col-sm-4">
+                <label>按玩家UID查看</label>
+                <p class="input-group">
+                    <input type="number" class="form-control" ng-model="searchUID" placeholder="输入玩家UID">
+                    <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="searchByUID()"><i
+                    class="glyphicon glyphicon-search"></i></button>
+          </span>
+                </p>
+            </div>
+        </div>
+        <table class="table m-b-none" ui-jq="footable" style="table-layout:fixed;">
+            <thead>
+            <tr>
+                <th data-sort-ignore="true" width="30px"></th>
+                <th data-sort-ignore="true" width="60px">
+                    UID
+                </th>
+                <th data-sort-ignore="true" width="25%">
+                    昵称
+                </th>
+                <th data-sort-ignore="true" width="60px">
+                    解封
+                </th>
+            </tr>
+            </thead>
+            <tbody ng-show="true">
+            <tr ng-repeat="record in players">
+                <td></td>
+                <td>{{record.uid}}</td>
+                <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{record.nickName}}</td>
+                <td>
+                    <a ng-click="playerUnlock(record.uid,record.nickName )">
+                        <script type="text/ng-template" id="playerUnlockModal.html">
+                            <div ng-include="'tpl/player/playerUnlockModal.html'"></div>
+                        </script>
+                        <i class="fa fa-pencil-square-o text-info"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="row wrapper" ng-if="players ==''">
+            <div class="col-sm-12 text-center">暂无数据</div>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <small class="text-muted inline m-t-sm m-b-sm">第{{pageId+1}}页/共{{pageNum}}页</small>
+                </div>
+                <div class="col-sm-4 text-right text-center-xs">
+                    <div class="btn-group m-t-none m-b-none">
+                        <button type="button" class="btn btn-default btn-sm">
+                            <a class="m-n font-thin text-info" ng-click="pageroll(0)">第一页</a>
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm">
+                            <a class="m-n font-thin text-info" ng-click="pageroll(-1)">上一页</a>
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm">
+                            <a class="m-n font-thin text-info" ng-click="pageroll(1)">下一页</a>
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm">
+                            <a class="m-n font-thin text-info" ng-click="pageroll(2)">最后一页</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

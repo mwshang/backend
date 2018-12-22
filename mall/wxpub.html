@@ -1,0 +1,110 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>正在进入</title>
+
+    <script src="libs/jquery/jquery.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script>
+        $(document).ready(function () {
+            var params = {};
+            var a = getUrlParam('a');
+            console.log(a);
+            if (a == 1) {
+                params.prod = getUrlParam('s');
+                params.uid = getUrlParam('code');
+                params.serverType = getUrlParam('t');
+                params.token = getUrlParam('token');
+                params.port = getUrlParam('p');
+                params.channel = getUrlParam('c');
+            } else {
+                // token_bind_t_paodekuai_s_whpdk_p_3012
+                var ps = a.split('_');
+                if (ps.indexOf('token') >= 0)
+                    params.token = ps[ps.indexOf('token')+1];
+                if (ps.indexOf('t') >= 0)
+                    params.serverType = ps[ps.indexOf('t')+1];
+                if (ps.indexOf('s') >= 0)
+                    params.prod = ps[ps.indexOf('s')+1];
+                if (ps.indexOf('p') >= 0)
+                    params.port = ps[ps.indexOf('p')+1];
+                if (ps.indexOf('c') >= 0)
+                    params.channel = ps[ps.indexOf('c')+1];
+
+                params.uid = getUrlParam('code');
+            }
+
+            if (params.uid == null) {
+                $("#msg")[0].innerText = '加载中, 请稍等...';
+
+                var href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + id(params.prod) + '&redirect_uri=';
+                var redirect_uri = 'http://';
+                if (params.prod == 'wh')
+                    redirect_uri += 'wh';
+                else if (params.prod == 'pyh')
+                    redirect_uri += 'pyh';
+               else if (params.prod == 'jsmj')
+                   redirect_uri += 'pyh';
+                redirect_uri += 'mall.'+_url(params.prod)+'/wxpub.html?a=token_' + params.token + '_t_' + params.serverType + '_s_' + params.prod + '_p_' + port(params.prod);
+                if (params.channel != undefined)
+                    redirect_uri +=  '_c_' + params.channel;
+                href += encodeURIComponent(redirect_uri);
+
+//                if (params.token == 'download')
+                    window.location = href + '&n=' + Math.floor(Math.random()*10000) + '&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
+//                else
+//                    window.location = href + '&n=' + Math.floor(Math.random()*10000) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+            } else {
+                params.code = getUrlParam('code');
+                var url = 'http://www.abcd1234.online:'+port(params.prod);
+                $.ajax({
+                    type: "post",
+                    url: url + (params.token == 'download' ? "/player/registerPlayer" : "/user/wx_getuser"),
+                    data: params,
+                    success: function (data) {
+                        $("#msg")[0].innerText = '';
+
+                        if (data.code == 200) {
+                            var href = 'http://daili.';
+                            if (params.token == 'login') {
+                                href += params.prod + '.'+_url(params.prod);
+                                href += '/#access/signin?i=' + data.data + '&code=' + params.code;
+                            } else if (params.token == 'mall') {
+                                href = 'http://mall.'+_url(params.prod)+'/mall.html?a=1&token=' + params.token + '&i=' + data.data + '&t=' + params.serverType + '&s=' + params.prod;
+                            } else if (params.token == 'bind') {
+                                href = 'http://mall.'+_url(params.prod)+'/bind.html?a=1&token=' + params.token + '&i=' + data.data + '&t=' + params.serverType + '&s=' + params.prod;
+                            } else if (params.token == 'download') {
+                                var href = 'http://';
+                                if (params.prod == 'wh')
+                                    href += 'wh';
+                                href += 'mall.'+_url(params.prod)+'/download.html?name=' + params.prod;
+
+                               if (params.channel != undefined)
+                                    href +=  '&c=' + params.channel;
+                            }
+
+                            window.location = href;
+                        } else if (data.code == 1000) {
+                            $("#msg")[0].innerText = '提示: 亲爱的用户,请先关注公众号!';
+                        } else {
+                            if (params.token != 'download')
+                                $("#msg")[0].innerText = '提示: 您的微信账号还未关联游戏玩家,请先登录游戏!';
+                            else
+                                $("#msg")[0].innerText = '提示: 服务器正在维护,请稍候再试!';
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body style="text-align: center">
+    <p class="text-center" id="msg">加载中, 请稍等...</p>
+</body>
+</html>
